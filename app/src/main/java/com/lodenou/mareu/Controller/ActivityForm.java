@@ -1,26 +1,26 @@
 package com.lodenou.mareu.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
 
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 
+
+import com.lodenou.mareu.Model.NothingSelectedSpinnerAdapter;
 import com.lodenou.mareu.R;
-import com.webianks.library.scroll_choice.ScrollChoice;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class ActivityForm extends AppCompatActivity {
 
 
+public class ActivityForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    String[] rooms = { "Bowser", "Daisy", "Luigi", "Mario", "Peach", "Toad"};
     EditText mChooseTime;
     TimePickerDialog mTimePickerDialog;
 
@@ -70,49 +70,58 @@ public class ActivityForm extends AppCompatActivity {
             }
         });
 
+        //SPINNER SETTINGS
 
-        //FIXME marche mal + on ne peut pas cliquer dessus
-        //Attach the scrollchoice from @activity_form.xml
-        final ScrollChoice mScrollChoice = (ScrollChoice)  findViewById(R.id.scroll_choice);
-
-        //List for scrolling menu 
-        final List<String> dataScroll = new ArrayList<>();
-            dataScroll.add("Bowser");
-            dataScroll.add("Daisy");
-            dataScroll.add("Luigi");
-            dataScroll.add("Mario");
-            dataScroll.add("Peach");
-            dataScroll.add("Toad");
+        //Getting the instance of Spinner and applying OnItemSelectedListener on it
+        Spinner spin = (Spinner) findViewById(R.id.Spinner);
+        spin.setOnItemSelectedListener(this);
 
 
-        // Default choice
-        mScrollChoice.addItems(dataScroll,5);
+        //Creating the ArrayAdapter instance having the rooms' list
+        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, rooms);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spin.setAdapter(new NothingSelectedSpinnerAdapter(
+                aa,
+                R.layout.contact_spinner_row_nothing_selected,
+                // R.layout.contact_spinner_nothing_selected_dropdown, // Optional
+                this));
 
-         // Attach listener to listen to know which item was selected
-        mScrollChoice.setOnItemSelectedListener(new ScrollChoice.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(ScrollChoice scrollChoice, int position, String name) {
-                Log.d("webi",name);
-            }
-        });
+        spin.setPrompt("Selectionnez une salle");
 
 
-        mScrollChoice.setOnClickListener(new View.OnClickListener() {
+        // Validate Button
+        Button mValidateButton = findViewById(R.id.validate_button);
+        mValidateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //TODO A REMPLIR POUR QUE CELA SAVE LES INFOS DE L ACTIVITE 2 ET INCORPORENT DANS LA LISTE DE L ACTIVITE 1
+                finish();
             }
         });
 
+    }
 
 
-
+    // OVERRIDES FOR SPINNER
+        //When we select item in the spinner
+        @Override
+        public void onItemSelected (AdapterView < ? > parent, View view,int position, long id){
+            //Toast.makeText(getApplicationContext(),rooms[position] , Toast.LENGTH_LONG).show();
+            //moche
         }
-
-
+        // default choice (no selected item in the spinner)
+        @Override
+        public void onNothingSelected (AdapterView < ? > parent){
+            //TODO A REMPLIR
 
 
     }
+
+
+
+
+}
 
 
 
