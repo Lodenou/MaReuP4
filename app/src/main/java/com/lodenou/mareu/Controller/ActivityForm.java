@@ -103,7 +103,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-    // OVERRIDES FOR SPINNER hg
+    // OVERRIDES FOR SPINNER hgd
         //When we select item in the spinner
         @Override
         public void onItemSelected (AdapterView < ? > parent, View view,int position, long id){
