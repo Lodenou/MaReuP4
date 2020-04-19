@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Controller.ActivityForm">
+
+
+
+    <TextView
+        android:id="@+id/main_title_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Créer une nouvelle réunion"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/title_field_1"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Rentrer l'heure de réunion"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_title_form"
+        >
+    </TextView>
+
+
+    <EditText
+        android:id="@+id/fields_1_form"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Entrer l'heure de la réunion"
+        app:layout_constraintTop_toBottomOf="@+id/title_field_1">
+
+    </EditText>
+
+
+    <TextView
+        android:id="@+id/title_field_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Choisir la salle de réunion"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/fields_1_form"
+        >
+
+    </TextView>
+
+    <com.webianks.library.scroll_choice.ScrollChoice
+        android:id="@+id/scroll_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:scroll_selected_item_background="#000000"
+        app:layout_constraintTop_toBottomOf="@+id/title_field_2"/>
+
+
+
+    <TextView
+        android:id="@+id/title_field_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Rentrer l'email des participants"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/scroll_choice"
+        >
+    </TextView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="email des participants"
+        app:layout_constraintTop_toBottomOf="@+id/title_field_3"
+        >
+
+
+    </EditText>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
