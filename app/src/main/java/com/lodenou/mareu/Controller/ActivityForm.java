@@ -80,7 +80,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         //Creating the ArrayAdapter instance having the rooms' list
         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, rooms);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
+        //Setting the ArrayAdapter data on the Spinner and nothingselected
         spin.setAdapter(new NothingSelectedSpinnerAdapter(
                 aa,
                 R.layout.contact_spinner_row_nothing_selected,
