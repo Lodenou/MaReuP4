@@ -75,7 +75,7 @@ public class ActivityForm extends AppCompatActivity {
         //Attach the scrollchoice from @activity_form.xml
         final ScrollChoice mScrollChoice = (ScrollChoice)  findViewById(R.id.scroll_choice);
 
-        //List for scrolling menu
+        //List for scrolling menu f-
         final List<String> dataScroll = new ArrayList<>();
             dataScroll.add("Bowser");
             dataScroll.add("Daisy");
