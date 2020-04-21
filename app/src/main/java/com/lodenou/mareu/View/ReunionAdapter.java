@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lodenou.mareu.Model.Reunion;
 import com.lodenou.mareu.R;
-import com.lodenou.mareu.View.ReunionViewHolder;
-
 import java.util.List;
 
 
@@ -19,10 +17,12 @@ import java.util.List;
 public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
 
 
-    // Liste
+    // List
     private List <Reunion> ListReunion;
 
-    // Constructeur
+
+
+    // Constructor
     public ReunionAdapter(List<Reunion> listReunion) {
         ListReunion = listReunion;
     }
@@ -42,8 +42,10 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ReunionViewHolder holder, int position) {
         Reunion reunion = ListReunion.get(position);
+
         //FIXME NE MARCHE PAS ??
-//        holder.mTextViewReu.setText(ListReunion.getIdReu());
+
+//      holder.mTextViewReu.setText(ListReunion.getIdReu());
 //        holder.mTextViewTime.setText(ListReunion.getTimeReu());
 //        holder.mTextViewRoom.setText(ListReunion.getRoomReu());
 //        holder.mTextViewEmail.setText(ListReunion.getEmailReu());
@@ -56,4 +58,6 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
     public int getItemCount() {
         return this.ListReunion.size();
     }
+
+
 }

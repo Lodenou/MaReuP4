@@ -17,17 +17,17 @@ import com.lodenou.mareu.R;
 public class ReunionViewHolder extends RecyclerView.ViewHolder {
 
     // Image de statut de reunion
-    @BindView(R.id.imageView_alerte) ImageView mImageViewAlerte;
+    @BindView(R.id.imageView_alerte)  ImageView mImageViewAlerte;
     // Numéro de réunion (Reunion A, Reunion B ...)
-    @BindView(R.id.textView_reu) TextView mTextViewReu;
+    @BindView(R.id.textView_reu)  TextView mTextViewReu;
     // Salle de réunion
-    @BindView(R.id.textView_room) TextView mTextViewRoom;
+    @BindView(R.id.textView_room)  TextView mTextViewRoom;
     // Heure de reunion
-    @BindView(R.id.textView_time) TextView mTextViewTime;
+    @BindView(R.id.textView_time)  TextView mTextViewTime;
     // Email des participants
-    @BindView(R.id.textView_email) TextView mTextViewEmail;
+    @BindView(R.id.textView_email)  TextView mTextViewEmail;
     // bouton poubelle
-    @BindView(R.id.imageButton_bin) ImageButton mImageButtonBin;
+    @BindView(R.id.imageButton_bin)  ImageButton mImageButtonBin;
 
     public ReunionViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -36,6 +36,6 @@ public class ReunionViewHolder extends RecyclerView.ViewHolder {
 
 
   //  public void updateMaReunion(Reunion reunion){
-  //      this.textView.setText(reunion.getLogin());
+  //      this.textView.setText(reunion);
   //  }
 }
