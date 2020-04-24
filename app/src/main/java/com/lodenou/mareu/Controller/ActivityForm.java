@@ -5,26 +5,37 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 
-
+import com.lodenou.mareu.Model.Reunion;
 import com.lodenou.mareu.View.NothingSelectedSpinnerAdapter;
 import com.lodenou.mareu.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 
 public class ActivityForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    String[] rooms = { "Bowser", "Daisy", "Luigi", "Mario", "Peach", "Toad"};
-    EditText mChooseTime;
+    String[] rooms = {"Bowser", "Daisy", "Luigi", "Mario", "Peach", "Toad"};
+//    EditText mChooseTime;
+    TextView mChooseTime;
     TimePickerDialog mTimePickerDialog;
 
     @Override
@@ -49,8 +60,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-
-
     // Clean the onCreate
     private void iniatiateEverything() {
         // bouton Back en haut à gauche
@@ -59,6 +68,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         getSupportActionBar().setHomeButtonEnabled(true);
 
         // Timepicker
+        //TODO NE MARCHE PAS BUG COMPLETEMENT
         mChooseTime = findViewById(R.id.fields_1_form);
         mChooseTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,12 +76,20 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
                 TimePickerDialog timePickerDialog = new TimePickerDialog(ActivityForm.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
-                        mChooseTime.setText(hourOfDay + "h" + minutes);
+                        Calendar c = Calendar.getInstance();
+                        c.set(Calendar.SECOND, 0);
+                        c.set(Calendar.MINUTE, minutes);
+                        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        SimpleDateFormat sdf = new SimpleDateFormat("HH'h'mm", Locale.FRANCE);
+                        mChooseTime.setText(sdf.format(c.getTime()));
                     }
                 }, 0, 0, false);
                 timePickerDialog.show();
             }
         });
+
+
+
         // -----------------------------------------------------------------------------------------------------------------------------------
         //SPINNER SETTINGS
 
@@ -94,8 +112,27 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
 
 
         // ------------------------------------------------------------------------------------------------------------------------------------
-        final EditText fieldForm1 = findViewById(R.id.fields_1_form);
+       // final EditText fieldForm1 = findViewById(R.id.fields_1_form);
+        final TextView fieldForm1 = findViewById(R.id.fields_1_form);
         final EditText fieldForm2 = findViewById(R.id.fields_2_form);
+
+        //TODO
+        fieldForm2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         // ------------------------------------------------------------------------------------------------------------------------------------
 
         // Validate Button
@@ -104,66 +141,68 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
                 //Check if the fields are empty or not
-                if ((isEmpty1(fieldForm1) || isEmpty2(fieldForm2)|| isEmpty3(spin) ) == true ) {
-                    Toast.makeText(getApplicationContext(),"Remplissez tous les champs", Toast.LENGTH_LONG).show();
+                if ((isEmpty1(fieldForm1) || isEmpty2(fieldForm2) || isEmpty3(spin)) == true) {
+                    Toast.makeText(getApplicationContext(), "Remplissez tous les champs", Toast.LENGTH_LONG).show();
+                } else {
+
+                    startActivity(getFormInfos());
                 }
-                else {
-                    getFormInfos();
-                    //TODO A REMPLIR POUR QUE CELA SAVE LES INFOS DE L ACTIVITE 2 ET INCORPORENT DANS LA LISTE DE L ACTIVITE 1
-                    // Need to refresh ActivityListMareu
-                    finish(); }
             }
         });
     }
 
     // Send form infos to ActivityListMareu
-    public void getFormInfos() {
-        EditText mEditText1 = findViewById(R.id.fields_1_form);
-        EditText mEditText2 = findViewById(R.id.fields_2_form);
+    public Intent getFormInfos() {
 
-        // redondant, peut poser problème
+        TextView mEditTextHour = findViewById(R.id.fields_1_form);
+//        EditText mEditTextHour = findViewById(R.id.fields_1_form);
         final Spinner spin = (Spinner) findViewById(R.id.Spinner);
+        EditText mEditTextEmail = findViewById(R.id.fields_2_form);
 
-        String myEditedText1 = mEditText1.getText().toString();
-        String myEditedText2 = mEditText2.getText().toString();
+
+        String myEditedText1 = mEditTextHour.getText().toString();
         String spinnerText = spin.getSelectedItem().toString();
+        String myEditedText2 = mEditTextEmail.getText().toString();
+
+
 
         Intent intent = new Intent(this, ActivityListMareu.class);
-        intent.putExtra("edittext1", myEditedText1);
-        intent.putExtra("edittext2", myEditedText2);
-        intent.putExtra("spinner", spinnerText);
+        ApiService.getmReunions().add(new Reunion(myEditedText1, spinnerText, myEditedText2));
 
+
+        return intent;
     }
 
     // OVERRIDES FOR SPINNER
-        //When we select item in the spinner
-        @Override
-        public void onItemSelected (AdapterView < ? > parent, View view,int position, long id){
-            //Toast.makeText(getApplicationContext(),rooms[position] , Toast.LENGTH_LONG).show();
-            //moche
-        }
-        // default choice (no selected item in the spinner)
-        @Override
-        public void onNothingSelected (AdapterView < ? > parent){
-            //TODO A REMPLIR
+    //When we select item in the spinner
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        //Toast.makeText(getApplicationContext(),rooms[position] , Toast.LENGTH_LONG).show();
+        //moche
+    }
+
+    // default choice (no selected item in the spinner)
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        //TODO A REMPLIR
     }
 
 
     // fields empty methods
-    private boolean isEmpty1(EditText fieldForm1) {
+    private boolean isEmpty1(TextView fieldForm1) {
         return fieldForm1.getText().toString().trim().length() == 0;
     }
+
     private boolean isEmpty2(EditText fieldForm2) {
         return fieldForm2.getText().toString().trim().length() == 0;
     }
+
     //Bidouillage qui marche
-    private boolean isEmpty3 (Spinner spin) {
+    private boolean isEmpty3(Spinner spin) {
         int selectedItemOfMySpinner = spin.getSelectedItemPosition();
         Object actualPositionOfMySpinner = spin.getItemAtPosition(selectedItemOfMySpinner);
         return actualPositionOfMySpinner == null;
     }
-
-
 
 
 }

@@ -8,8 +8,6 @@ public class Reunion {
 
 
 
-    // id de la reunion
-    private String idReu;
 
     // heure de la reunion
     private String timeReu;
@@ -21,20 +19,13 @@ public class Reunion {
     private String emailReu;
 
 
-    public Reunion(String idReu, String timeReu, String roomReu, String emailReu) {
-        this.idReu = idReu;
+    public Reunion(String timeReu, String roomReu, String emailReu) {
+
         this.timeReu = timeReu;
         this.roomReu = roomReu;
         this.emailReu = emailReu;
     }
 
-    // getter setter @idReu
-    public String getIdReu() {
-        return idReu;
-    }
-    public void setIdReu(String idReu) {
-        this.idReu = idReu;
-    }
 
 
     // getter setter @timeReu

@@ -17,7 +17,7 @@ import com.lodenou.mareu.R;
 public class ReunionViewHolder extends RecyclerView.ViewHolder {
 
     // Image de statut de reunion
-    @BindView(R.id.imageView_alerte)  ImageView mImageViewAlerte;
+    @BindView(R.id.imageView_alerte) public ImageView mImageViewAlerte;
     // Numéro de réunion (Reunion A, Reunion B ...)
     @BindView(R.id.textView_reu)  TextView mTextViewReu;
     // Salle de réunion
@@ -34,8 +34,4 @@ public class ReunionViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-
-  //  public void updateMaReunion(Reunion reunion){
-  //      this.textView.setText(reunion);
-  //  }
 }

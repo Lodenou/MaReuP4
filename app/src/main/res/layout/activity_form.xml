@@ -46,18 +46,32 @@
     </TextView>
 
 
-    <EditText
-        android:id="@+id/fields_1_form"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Entrer l'heure de la réunion"
-        app:layout_constraintTop_toBottomOf="@+id/title_field_1">
+<!--    <EditText-->
+<!--        android:id="@+id/fields_1_form" -->
+<!--        android:layout_marginTop="10dp" -->
+<!--        android:layout_marginLeft="10dp" -->
+<!--        android:layout_marginRight="10dp" -->
+<!--        android:layout_width="match_parent" -->
+<!--        android:layout_height="wrap_content" -->
+<!--        android:hint="Entrer l'heure de la réunion" -->
+<!--        app:layout_constraintTop_toBottomOf="@+id/title_field_1"> -->
 
-    </EditText>
+<!--    </EditText> -->
 
+
+        <TextView
+            android:id="@+id/fields_1_form"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:hint = "HH h mm"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/title_field_1"
+            >
+
+        </TextView>
 
     <TextView
         android:id="@+id/title_field_2"
@@ -112,10 +126,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginRight="10dp"
         android:inputType="textEmailAddress"
-        android:hint="emails des participants séparés d'une virgule"
+        android:hint="emails séparés d'une virgule"
         app:layout_constraintTop_toBottomOf="@+id/title_field_3"
         >
 

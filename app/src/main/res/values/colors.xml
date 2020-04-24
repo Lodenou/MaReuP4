@@ -6,4 +6,5 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlue">#3385ff</color>
     <color name="colorDarkGrey">#32324e</color>
+    <color name="colorLightGrey">#bab7b7</color>
 </resources>
