@@ -19,7 +19,7 @@
         <item
             android:id="@+id/action_menu2"
             android:orderInCategory="2"
-            android:title="menu 2" />
+            android:title="Filtrer par salle" />
 
     </menu>
 

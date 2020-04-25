@@ -1,5 +1,6 @@
 package com.lodenou.mareu.Controller;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,17 +22,20 @@ import com.lodenou.mareu.Event.DeleteReunionEvent;
 import com.lodenou.mareu.Model.Reunion;
 import com.lodenou.mareu.R;
 import com.lodenou.mareu.View.ReunionAdapter;
-import com.lodenou.mareu.View.ReunionViewHolder;
+
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.w3c.dom.Text;
 
-import java.util.ArrayList;
+
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.widget.Toast.LENGTH_LONG;
 
 
 public class ActivityListMareu extends AppCompatActivity {
@@ -83,7 +88,6 @@ public class ActivityListMareu extends AppCompatActivity {
 
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -93,18 +97,53 @@ public class ActivityListMareu extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_menu1:
 
-        return super.onOptionsItemSelected(item);
+                filterPerHour();
+                return true;
+            case R.id.action_menu2:
+
+                filterPerRoom();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+    }}
+
+
+
+
+    private void filterPerHour() {
+        List<Reunion> mListReunion = ApiService.getmReunions();
+        Comparator<Reunion> compareById = new Comparator<Reunion>() {
+            @Override
+            public int compare(Reunion o1, Reunion o2) {
+                return o1.getTimeReu().compareTo(o2.getTimeReu());
+            }
+        };
+
+        Collections.sort(mListReunion, compareById);
+        mAdapter.notifyDataSetChanged();
     }
+
+    private void filterPerRoom() {
+        List<Reunion> mListReunion = ApiService.getmReunions();
+        Comparator<Reunion> compareById = new Comparator<Reunion>() {
+            @Override
+            public int compare(Reunion o1, Reunion o2) {
+                return o1.getRoomReu().compareTo(o2.getRoomReu());
+            }
+        };
+
+        Collections.sort(mListReunion, compareById);
+        mAdapter.notifyDataSetChanged();
+    }
+
+
+
+
 
     private void initList() {
         final List<Reunion> reunions = ApiService.getmReunions();

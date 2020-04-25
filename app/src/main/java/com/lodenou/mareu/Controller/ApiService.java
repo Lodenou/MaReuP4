@@ -40,7 +40,14 @@ public class ApiService {
             ("Réunion G"),
             ("Réunion H"),
             ("Réunion I"),
-            ("Réunion J")
+            ("Réunion J"),
+            ("Réunion K"),
+            ("Réunion L"),
+            ("Réunion M"),
+            ("Réunion N"),
+            ("Réunion O"),
+            ("Réunion P")
+
     );
 
     public static List<String> getReunionListAlphabetic() {
