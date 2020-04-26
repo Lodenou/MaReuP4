@@ -7,6 +7,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -34,7 +35,7 @@ import java.util.Random;
 public class ActivityForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     String[] rooms = {"Bowser", "Daisy", "Luigi", "Mario", "Peach", "Toad"};
-//    EditText mChooseTime;
+    //    EditText mChooseTime;
     TextView mChooseTime;
     TimePickerDialog mTimePickerDialog;
 
@@ -89,7 +90,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         });
 
 
-
         // -----------------------------------------------------------------------------------------------------------------------------------
         //SPINNER SETTINGS
 
@@ -112,7 +112,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
 
 
         // ------------------------------------------------------------------------------------------------------------------------------------
-       // final EditText fieldForm1 = findViewById(R.id.fields_1_form);
+        // final EditText fieldForm1 = findViewById(R.id.fields_1_form);
         final TextView fieldForm1 = findViewById(R.id.fields_1_form);
         final EditText fieldForm2 = findViewById(R.id.fields_2_form);
 
@@ -136,13 +136,22 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         // ------------------------------------------------------------------------------------------------------------------------------------
 
         // Validate Button
+       // final EditText mEditTextEmail = findViewById(R.id.fields_2_form);
         Button mValidateButton = findViewById(R.id.validate_button);
         mValidateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //Check if the fields are empty or not
                 if ((isEmpty1(fieldForm1) || isEmpty2(fieldForm2) || isEmpty3(spin)) == true) {
-                    Toast.makeText(getApplicationContext(), "Remplissez tous les champs", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),
+                            "Remplissez tous les champs",
+                            Toast.LENGTH_LONG).show();
+            }
+                         else if (!EmailValid(fieldForm2.getText().toString())) {
+                    Toast.makeText(getApplicationContext(),
+                            "Veuillez rentrer un email valide",
+                            Toast.LENGTH_LONG).show();
                 } else {
 
                     startActivity(getFormInfos());
@@ -155,7 +164,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     public Intent getFormInfos() {
 
         TextView mEditTextHour = findViewById(R.id.fields_1_form);
-//        EditText mEditTextHour = findViewById(R.id.fields_1_form);
         final Spinner spin = (Spinner) findViewById(R.id.Spinner);
         EditText mEditTextEmail = findViewById(R.id.fields_2_form);
 
@@ -172,6 +180,14 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
 
         return intent;
     }
+
+
+    // method to see if user entered an email adress in the edittext
+    boolean EmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+
 
     // OVERRIDES FOR SPINNER
     //When we select item in the spinner
