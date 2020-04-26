@@ -28,7 +28,7 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
 
 
     // List
-    private List <Reunion> ListReunion;
+    final private List <Reunion> ListReunion;
 
 
 
