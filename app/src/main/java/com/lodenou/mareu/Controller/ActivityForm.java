@@ -43,7 +43,10 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-        iniatiateEverything();
+        initiateBackButton();
+        initiateValidButton();
+        initiateTimePicker();
+        initiateSpinner();
 
     }
 
@@ -60,16 +63,14 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         return true;
     }
 
-
-    // Clean the onCreate
-    private void iniatiateEverything() {
+    private void initiateBackButton() {
         // bouton Back en haut à gauche
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportActionBar().setHomeButtonEnabled(true);
+    }
 
-        // Timepicker
-        //TODO NE MARCHE PAS BUG COMPLETEMENT
+    private void initiateTimePicker() {
         mChooseTime = findViewById(R.id.fields_1_form);
         mChooseTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,9 +89,10 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
                 timePickerDialog.show();
             }
         });
+    }
 
 
-        // -----------------------------------------------------------------------------------------------------------------------------------
+    private void initiateSpinner(){
         //SPINNER SETTINGS
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
@@ -109,10 +111,10 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
                 this));
 
         spin.setPrompt("Selectionnez une salle");
+    }
 
 
-        // ------------------------------------------------------------------------------------------------------------------------------------
-        // final EditText fieldForm1 = findViewById(R.id.fields_1_form);
+    private void initiateValidButton(){
         final TextView fieldForm1 = findViewById(R.id.fields_1_form);
         final EditText fieldForm2 = findViewById(R.id.fields_2_form);
 
@@ -136,7 +138,8 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         // ------------------------------------------------------------------------------------------------------------------------------------
 
         // Validate Button
-       // final EditText mEditTextEmail = findViewById(R.id.fields_2_form);
+        // final EditText mEditTextEmail = findViewById(R.id.fields_2_form);
+        final Spinner spin = (Spinner) findViewById(R.id.Spinner);
         Button mValidateButton = findViewById(R.id.validate_button);
         mValidateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,8 +150,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
                     Toast.makeText(getApplicationContext(),
                             "Remplissez tous les champs",
                             Toast.LENGTH_LONG).show();
-            }
-                         else if (!EmailValid(fieldForm2.getText().toString())) {
+                } else if (!EmailValid(fieldForm2.getText().toString())) {
                     Toast.makeText(getApplicationContext(),
                             "Veuillez rentrer un email valide",
                             Toast.LENGTH_LONG).show();
@@ -159,6 +161,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
             }
         });
     }
+
 
     // Send form infos to ActivityListMareu
     public Intent getFormInfos() {
@@ -171,7 +174,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         String myEditedText1 = mEditTextHour.getText().toString();
         String spinnerText = spin.getSelectedItem().toString();
         String myEditedText2 = mEditTextEmail.getText().toString();
-
 
 
         Intent intent = new Intent(this, ActivityListMareu.class);
@@ -188,19 +190,17 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-
     // OVERRIDES FOR SPINNER
     //When we select item in the spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //Toast.makeText(getApplicationContext(),rooms[position] , Toast.LENGTH_LONG).show();
-        //moche
+
     }
 
     // default choice (no selected item in the spinner)
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        //TODO A REMPLIR
+
     }
 
 
