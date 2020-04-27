@@ -11,8 +11,6 @@ public class ApiService {
     private static List<Reunion> mReunions = new ArrayList<>();
 
 
-
-
     public static List<Reunion> getmReunions() {
         return mReunions;
     }
@@ -25,7 +23,6 @@ public class ApiService {
     public static void deleteReunion(Reunion reunion) {
         mReunions.remove(reunion);
     }
-
 
 
     // Used in adapter @onBindViewHolder

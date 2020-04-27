@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -28,17 +26,13 @@ import com.lodenou.mareu.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 
 
 public class ActivityForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    String[] rooms = {"Bowser", "Daisy","Donkey Kong", "Luigi", "Mario", "Peach", "Toad","Waluigi","Wario","Yoshi"};
-    //    EditText mChooseTime;
+    String[] rooms = {"Bowser", "Daisy", "Donkey Kong", "Luigi", "Mario", "Peach", "Toad", "Waluigi", "Wario", "Yoshi"};
     TextView mChooseTime;
-    TimePickerDialog mTimePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +94,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-    private void initiateSpinner(){
+    private void initiateSpinner() {
         //SPINNER SETTINGS
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
@@ -122,7 +116,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-    private void initiateValidButton(){
+    private void initiateValidButton() {
         final TextView fieldForm1 = findViewById(R.id.fields_1_form);
         final EditText fieldForm2 = findViewById(R.id.fields_2_form);
 
@@ -193,7 +187,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
 
 
     // method to see if user entered an email adress in the edittext
-    boolean EmailValid(CharSequence email) {
+    private boolean EmailValid(CharSequence email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 

@@ -39,7 +39,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static android.widget.Toast.LENGTH_LONG;
 
 
 public class ActivityListMareu extends AppCompatActivity {
@@ -98,7 +97,6 @@ public class ActivityListMareu extends AppCompatActivity {
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -121,9 +119,8 @@ public class ActivityListMareu extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-    }}
-
-
+        }
+    }
 
 
     private void filterPerHour() {
@@ -151,9 +148,6 @@ public class ActivityListMareu extends AppCompatActivity {
         Collections.sort(mListReunion, compareById);
         mAdapter.notifyDataSetChanged();
     }
-
-
-
 
 
     private void initList() {
