@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -34,7 +35,7 @@ import java.util.Random;
 
 public class ActivityForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    String[] rooms = {"Bowser", "Daisy", "Luigi", "Mario", "Peach", "Toad"};
+    String[] rooms = {"Bowser", "Daisy","Donkey Kong", "Luigi", "Mario", "Peach", "Toad","Waluigi","Wario","Yoshi"};
     //    EditText mChooseTime;
     TextView mChooseTime;
     TimePickerDialog mTimePickerDialog;
@@ -48,6 +49,13 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         initiateTimePicker();
         initiateSpinner();
 
+    }
+
+
+    @Override
+    protected void onResume() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        super.onResume();
     }
 
     @Override
@@ -107,7 +115,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         spin.setAdapter(new NothingSelectedSpinnerAdapter(
                 aa,
                 R.layout.contact_spinner_row_nothing_selected,
-                // R.layout.contact_spinner_nothing_selected_dropdown, // Optional
+
                 this));
 
         spin.setPrompt("Selectionnez une salle");

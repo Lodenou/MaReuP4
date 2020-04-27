@@ -2,11 +2,15 @@ package com.lodenou.mareu.Controller;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Surface;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,6 +82,13 @@ public class ActivityListMareu extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onResume() {
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        super.onResume();
     }
 
     @Override
