@@ -9,6 +9,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +21,9 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipDrawable;
+import com.google.android.material.chip.ChipGroup;
 import com.lodenou.mareu.Model.Reunion;
 import com.lodenou.mareu.View.NothingSelectedSpinnerAdapter;
 import com.lodenou.mareu.R;
@@ -34,6 +38,8 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     String[] rooms = {"Bowser", "Daisy", "Donkey Kong", "Luigi", "Mario", "Peach", "Toad", "Waluigi", "Wario", "Yoshi"};
     TextView mChooseTime;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +48,9 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         initiateValidButton();
         initiateTimePicker();
         initiateSpinner();
+        final EditText fieldForm2 = findViewById(R.id.fields_2_form);
+        final ChipGroup chipGroup = findViewById(R.id.chip_group);
+
 
     }
 
@@ -64,6 +73,42 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         onBackPressed();
         return true;
     }
+
+
+    public void buttonClick(View view) {
+        final EditText fieldForm2 = findViewById(R.id.fields_2_form);
+        final ChipGroup chipGroup = findViewById(R.id.chip_group);
+        final Button emailButton = findViewById(R.id.email_button);
+
+        final Chip chip = new Chip(this);
+        ChipDrawable drawable = ChipDrawable.createFromAttributes(this, null, 0, R.style.Widget_MaterialComponents_Chip_Entry);
+        chip.setChipDrawable(drawable);
+        chip.setCheckable(false);
+        chip.setClickable(false);
+        chip.setChipIconResource(R.drawable.ic_fingerprint_black_24dp);
+        chip.setIconStartPadding(3f);
+        chip.setPadding(60, 10, 60, 10);
+        chip.setText(fieldForm2.getText().toString());
+
+        // remove chip on click on the -
+        chip.setOnCloseIconClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chipGroup.removeView(chip);
+            }
+        });
+        if (!EmailValid(fieldForm2.getText().toString())) {
+            Toast.makeText(getApplicationContext(),
+                    "Veuillez rentrer un email valide",
+                    Toast.LENGTH_LONG).show();
+            fieldForm2.setText("");
+        } else {
+
+            chipGroup.addView(chip);
+            fieldForm2.setText("");
+        }
+    }
+
 
     private void initiateBackButton() {
         // bouton Back en haut à gauche
@@ -152,11 +197,13 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
                     Toast.makeText(getApplicationContext(),
                             "Remplissez tous les champs",
                             Toast.LENGTH_LONG).show();
-                } else if (!EmailValid(fieldForm2.getText().toString())) {
-                    Toast.makeText(getApplicationContext(),
-                            "Veuillez rentrer un email valide",
-                            Toast.LENGTH_LONG).show();
-                } else {
+                }
+//                else if (!EmailValid(fieldForm2.getText().toString())) {
+//                    Toast.makeText(getApplicationContext(),
+//                            "Veuillez rentrer un email valide",
+//                            Toast.LENGTH_LONG).show();
+//                }
+                else {
 
                     startActivity(getFormInfos());
                 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -7,9 +8,6 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Controller.ActivityForm">
@@ -127,19 +125,38 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="115dp"
         android:inputType="textEmailAddress"
-        android:hint="emails séparés d'une virgule"
+        android:hint="Rentrez l'email"
         app:layout_constraintTop_toBottomOf="@+id/title_field_3"
         >
-
-
     </EditText>
+
+        <Button
+            android:id="@+id/email_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="buttonClick"
+            android:text="Ajouter"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/chip_group"
+            app:layout_constraintLeft_toRightOf="@+id/fields_2_form"
+            app:layout_constraintTop_toBottomOf="@+id/title_field_3">
+
+        </Button>
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toBottomOf="@+id/fields_2_form">
+
+        </com.google.android.material.chip.ChipGroup>
 
 
         <Button
             android:id="@+id/validate_button"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:background="@color/colorPrimary"
@@ -147,7 +164,7 @@
             android:text="Valider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/fields_2_form"
+            app:layout_constraintTop_toBottomOf="@+id/chip_group"
             >
 
         </Button>

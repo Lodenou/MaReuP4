@@ -50,11 +50,11 @@ public class InstrumentedTest {
     public ActivityTestRule<ActivityListMareu> mActivityRule =
             new ActivityTestRule(ActivityListMareu.class);
 
-//    @Before
-//    public void setUp() {
-//        mActivity = mActivityRule.getActivity();
-//        assertThat(mActivity, notNullValue());
-//    }
+    @Before
+    public void setUp() {
+        mActivity = mActivityRule.getActivity();
+        assertThat(mActivity, notNullValue());
+    }
 
 
     @Test
@@ -122,6 +122,8 @@ public class InstrumentedTest {
                         isDisplayed()));
         scrollView.check(matches(isDisplayed()));
     }
+
+
 
 
     private static Matcher<View> childAtPosition(

@@ -29,9 +29,12 @@ public class ReunionViewHolder extends RecyclerView.ViewHolder {
     // bouton poubelle
     @BindView(R.id.imageButton_bin)  ImageButton mImageButtonBin;
 
+
+
     public ReunionViewHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+
     }
 
 }
