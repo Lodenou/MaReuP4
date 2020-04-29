@@ -25,16 +25,28 @@ public class UnitTests {
     }
 
 
-
     @Test
     public void addMeetingWithSuccess() {
-       int x = 0;
+        int x = 0;
         List<Reunion> reunionList = mService.getmReunions();
         x = reunionList.size();
+        // => ActivityForm l 182  copy of this function to test it
         mService.getmReunions().add(mReunion);
-        assertTrue(reunionList.size() == x+1);
+        assertTrue(reunionList.size() == x + 1);
+    }
+
+    @Test
+    public void deleteMeetingWithSuccess(){
+        //add a reunion to get 1 element in the list
+        mService.getmReunions().add(mReunion);
+        Reunion reunionToDelete = mService.getmReunions().get(0);
+        mService.deleteReunion(reunionToDelete);
+        assertFalse(mService.getmReunions().contains(reunionToDelete));
     }
 
 
+    @Test
+    public void filtersWork(){
 
+    }
 }
