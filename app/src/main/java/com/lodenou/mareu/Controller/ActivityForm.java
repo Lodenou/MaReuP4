@@ -9,6 +9,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +30,7 @@ import com.lodenou.mareu.View.NothingSelectedSpinnerAdapter;
 import com.lodenou.mareu.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -48,8 +50,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         initiateValidButton();
         initiateTimePicker();
         initiateSpinner();
-        final EditText fieldForm2 = findViewById(R.id.fields_2_form);
-        final ChipGroup chipGroup = findViewById(R.id.chip_group);
+
 
 
     }
@@ -217,16 +218,26 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
 
         TextView mEditTextHour = findViewById(R.id.fields_1_form);
         final Spinner spin = (Spinner) findViewById(R.id.Spinner);
-        EditText mEditTextEmail = findViewById(R.id.fields_2_form);
+        final ChipGroup chipGroup = findViewById(R.id.chip_group);
+
+
+        ArrayList<String> emails = new ArrayList<>();
+        for (int i = 0; i < chipGroup.getChildCount(); i++) {
+            String email = ((Chip) chipGroup.getChildAt(i)).getText().toString();
+            emails.add(email);
+        }
+        
 
 
         String myEditedText1 = mEditTextHour.getText().toString();
         String spinnerText = spin.getSelectedItem().toString();
-        String myEditedText2 = mEditTextEmail.getText().toString();
+
+
+
 
 
         Intent intent = new Intent(this, ActivityListMareu.class);
-        ApiService.getmReunions().add(new Reunion(myEditedText1, spinnerText, myEditedText2));
+        ApiService.getmReunions().add(new Reunion(myEditedText1, spinnerText, emails.toString()));
 
 
         return intent;

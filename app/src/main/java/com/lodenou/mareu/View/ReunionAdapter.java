@@ -63,6 +63,7 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
 
         // random color for the alert image
         holder.mImageViewAlerte.setColorFilter(getRandomColor());
+
         holder.mTextViewTime.setText(" - "+reunion.getTimeReu()+" - ");
         holder.mTextViewRoom.setText(reunion.getRoomReu());
         holder.mTextViewEmail.setText(reunion.getEmailReu());

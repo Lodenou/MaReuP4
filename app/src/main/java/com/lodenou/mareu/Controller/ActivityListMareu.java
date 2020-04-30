@@ -3,6 +3,7 @@ package com.lodenou.mareu.Controller;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.Display;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,8 +67,16 @@ public class ActivityListMareu extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // on click on fab, creat new ActivityForm and start it
+
         FloatingActionButton fab = findViewById(R.id.fab);
+
+        // change the color of the fab' cross
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(fab.getDrawable()),
+                ContextCompat.getColor(getApplicationContext(), R.color.colorWhite)
+        );
+
+        // on click on fab, creat new ActivityForm and start it
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

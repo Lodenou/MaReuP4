@@ -15,11 +15,9 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Controller.ActivityListMareu">
-    </androidx.recyclerview.widget.RecyclerView>
-
-
-
+        tools:context=".Controller.ActivityListMareu"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"></androidx.recyclerview.widget.RecyclerView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
