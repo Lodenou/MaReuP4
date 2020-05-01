@@ -165,6 +165,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     private void initiateValidButton() {
         final TextView fieldForm1 = findViewById(R.id.fields_1_form);
         final EditText fieldForm2 = findViewById(R.id.fields_2_form);
+        final ChipGroup chipGroup = findViewById(R.id.chip_group);
 
         //TODO
         fieldForm2.addTextChangedListener(new TextWatcher() {
@@ -194,7 +195,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
 
                 //Check if the fields are empty or not
-                if ((isEmpty1(fieldForm1) || isEmpty2(fieldForm2) || isEmpty3(spin)) == true) {
+                if ((isEmpty1(fieldForm1) || isEmpty2(chipGroup) || isEmpty3(spin)) == true) {
                     Toast.makeText(getApplicationContext(),
                             "Remplissez tous les champs",
                             Toast.LENGTH_LONG).show();
@@ -226,7 +227,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
             String email = ((Chip) chipGroup.getChildAt(i)).getText().toString();
             emails.add(email);
         }
-        
+
 
 
         String myEditedText1 = mEditTextHour.getText().toString();
@@ -269,8 +270,14 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         return fieldForm1.getText().toString().trim().length() == 0;
     }
 
-    private boolean isEmpty2(EditText fieldForm2) {
-        return fieldForm2.getText().toString().trim().length() == 0;
+    private boolean isEmpty2(ChipGroup chipGroup) {
+        ArrayList<String> emails = new ArrayList<>();
+        for (int i = 0; i < chipGroup.getChildCount(); i++) {
+            String email = ((Chip) chipGroup.getChildAt(i)).getText().toString();
+            emails.add(email);
+        }
+
+        return emails.isEmpty();
     }
 
     //Bidouillage qui marche
