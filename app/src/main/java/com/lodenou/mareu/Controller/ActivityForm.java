@@ -168,22 +168,22 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         final ChipGroup chipGroup = findViewById(R.id.chip_group);
 
         //TODO
-        fieldForm2.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+//        fieldForm2.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//            }
+//        });
         // ------------------------------------------------------------------------------------------------------------------------------------
 
         // Validate Button
@@ -200,11 +200,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
                             "Remplissez tous les champs",
                             Toast.LENGTH_LONG).show();
                 }
-//                else if (!EmailValid(fieldForm2.getText().toString())) {
-//                    Toast.makeText(getApplicationContext(),
-//                            "Veuillez rentrer un email valide",
-//                            Toast.LENGTH_LONG).show();
-//                }
+
                 else {
 
                     startActivity(getFormInfos());
@@ -227,9 +223,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
             String email = ((Chip) chipGroup.getChildAt(i)).getText().toString();
             emails.add(email);
         }
-
-
-
         String myEditedText1 = mEditTextHour.getText().toString();
         String spinnerText = spin.getSelectedItem().toString();
 
@@ -238,7 +231,8 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
 
 
         Intent intent = new Intent(this, ActivityListMareu.class);
-        ApiService.getmReunions().add(new Reunion(myEditedText1, spinnerText, emails.toString()));
+        ApiService.getmReunions().add(new Reunion(myEditedText1, spinnerText, emails.toString()
+                .replace("[" ,"").replace("]", "")));
 
 
         return intent;
