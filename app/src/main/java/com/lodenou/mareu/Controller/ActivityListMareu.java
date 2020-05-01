@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.sax.StartElementListener;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +71,12 @@ public class ActivityListMareu extends AppCompatActivity {
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
+
+
+
+
+
+
 
         // change the color of the fab' cross
         DrawableCompat.setTint(

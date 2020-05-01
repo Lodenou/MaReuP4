@@ -1,6 +1,7 @@
 package com.lodenou.mareu.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.lodenou.mareu.Controller.ActivityZoom;
 import com.lodenou.mareu.Controller.ApiService;
 import com.lodenou.mareu.Event.DeleteReunionEvent;
 import com.lodenou.mareu.Model.Reunion;
@@ -55,7 +57,7 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
 
     // Met à jour la View avec une réunion
     @Override
-    public void onBindViewHolder(@NonNull ReunionViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ReunionViewHolder holder, int position) {
         final Reunion reunion = ListReunion.get(position);
 
         // get item of the list REUNION_LIST_ALPHABETIC in terms of the list position
@@ -73,6 +75,17 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
             @Override
             public void onClick(View v) {
                 EventBus.getDefault().post(new DeleteReunionEvent(reunion));
+            }
+        });
+
+        // zoom for emails on click on item
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.itemView.getContext(), ActivityZoom.class);
+                intent.putExtra("id", reunion.getEmailReu());
+                holder.itemView.getContext().startActivity(intent);
             }
         });
     }
