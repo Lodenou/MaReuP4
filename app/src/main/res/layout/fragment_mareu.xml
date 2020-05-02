@@ -14,6 +14,8 @@
         android:layout_height="50dp"
         android:src="@drawable/ic_fiber_manual_record_black_24dp"/>
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -22,29 +24,30 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp">
 
+
         <TextView
             android:id="@+id/textView_reu"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginTop="4dp"
             android:textStyle="bold"
-            android:textSize="16dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Réunion A" />
+            tools:text="Hhhhhhhhhhh" />
 
         <TextView
             android:id="@+id/textView_room"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginTop="4dp"
+            android:textColor="@color/colorBlack"
             android:textStyle="bold"
-            android:textSize="16dp"
+            android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@+id/textView_time"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="bowser"
-
-
+            android:text="Bowser"
             />
 
         <TextView
@@ -53,20 +56,26 @@
             android:layout_height="20dp"
             android:layout_marginTop="4dp"
             android:textStyle="bold"
-            android:textSize="16dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@+id/textView_reu"
             app:layout_constraintTop_toTopOf="parent"
             tools:text=" - 09h00 - " />
+
+
 
         <TextView
             android:id="@+id/textView_email"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:maxLines="1"
+            android:textSize="13sp"
+            android:textColor="@color/colorBlack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_reu"
             tools:text="luigi@gmail.com" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <ImageButton
         android:id="@+id/imageButton_bin"

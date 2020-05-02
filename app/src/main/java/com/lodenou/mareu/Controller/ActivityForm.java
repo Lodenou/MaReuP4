@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
@@ -37,7 +38,7 @@ import java.util.Locale;
 
 public class ActivityForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    String[] rooms = {"Bowser", "Daisy", "Donkey Kong", "Luigi", "Mario", "Peach", "Toad", "Waluigi", "Wario", "Yoshi"};
+    String[] rooms = {"Bowser", "Daisy", "Donkey", "Luigi", "Mario", "Peach", "Toad", "Tiara", "Wario", "Yoshi"};
     TextView mChooseTime;
 
 
@@ -202,7 +203,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
                 }
 
                 else {
-
+                    finish();
                     startActivity(getFormInfos());
                 }
             }
@@ -213,11 +214,15 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     // Send form infos to ActivityListMareu
     public Intent getFormInfos() {
 
+        EditText mEditTextSubject = findViewById(R.id.fields_0_form);
         TextView mEditTextHour = findViewById(R.id.fields_1_form);
         final Spinner spin = (Spinner) findViewById(R.id.Spinner);
         final ChipGroup chipGroup = findViewById(R.id.chip_group);
 
+        String SubjectText = mEditTextSubject.getText().toString();
 
+
+        // get emails from chip group
         ArrayList<String> emails = new ArrayList<>();
         for (int i = 0; i < chipGroup.getChildCount(); i++) {
             String email = ((Chip) chipGroup.getChildAt(i)).getText().toString();
@@ -231,7 +236,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
 
 
         Intent intent = new Intent(this, ActivityListMareu.class);
-        ApiService.getmReunions().add(new Reunion(myEditedText1, spinnerText, emails.toString()
+        ApiService.getmReunions().add(new Reunion(SubjectText, myEditedText1, spinnerText, emails.toString()
                 .replace("[" ,"").replace("]", "")));
 
 

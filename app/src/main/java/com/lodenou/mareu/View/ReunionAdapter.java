@@ -22,8 +22,6 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 import java.util.Random;
 
-import static com.lodenou.mareu.Controller.ApiService.REUNION_LIST_ALPHABETIC;
-import static com.lodenou.mareu.Controller.ApiService.getReunionListAlphabetic;
 
 
 public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
@@ -60,8 +58,10 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
     public void onBindViewHolder(@NonNull final ReunionViewHolder holder, int position) {
         final Reunion reunion = ListReunion.get(position);
 
-        // get item of the list REUNION_LIST_ALPHABETIC in terms of the list position
-        holder.mTextViewReu.setText(REUNION_LIST_ALPHABETIC.get(position));
+        // get the subject of the meeting
+//        holder.mTextViewReu.setText(REUNION_LIST_ALPHABETIC.get(position));
+
+        holder.mTextViewReu.setText(reunion.getSubjectReu());
 
         // random color for the alert image
         holder.mImageViewAlerte.setColorFilter(getRandomColor());

@@ -7,7 +7,7 @@ package com.lodenou.mareu.Model;
 public class Reunion {
 
 
-
+    private String subjectReu;
 
     // heure de la reunion
     private String timeReu;
@@ -19,14 +19,22 @@ public class Reunion {
     private String emailReu;
 
 
-    public Reunion(String timeReu, String roomReu, String emailReu) {
+    public Reunion(String subjectReu, String timeReu, String roomReu, String emailReu) {
 
+        this.subjectReu = subjectReu;
         this.timeReu = timeReu;
         this.roomReu = roomReu;
         this.emailReu = emailReu;
     }
 
 
+    public String getSubjectReu() {
+        return subjectReu;
+    }
+
+    public void setSubjectReu(String subjectReu) {
+        this.subjectReu = subjectReu;
+    }
 
     // getter setter @timeReu
     public String getTimeReu() {

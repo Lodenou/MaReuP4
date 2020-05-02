@@ -26,28 +26,28 @@ public class ApiService {
 
 
     // Used in adapter @onBindViewHolder
-    public static List<String> REUNION_LIST_ALPHABETIC = Arrays.asList(
+//    public static List<String> REUNION_LIST_ALPHABETIC = Arrays.asList(
+//
+//            ("Réunion A"),
+//            ("Réunion B"),
+//            ("Réunion C"),
+//            ("Réunion D"),
+//            ("Réunion E"),
+//            ("Réunion F"),
+//            ("Réunion G"),
+//            ("Réunion H"),
+//            ("Réunion I"),
+//            ("Réunion J"),
+//            ("Réunion K"),
+//            ("Réunion L"),
+//            ("Réunion M"),
+//            ("Réunion N"),
+//            ("Réunion O"),
+//            ("Réunion P")
+//
+//    );
 
-            ("Réunion A"),
-            ("Réunion B"),
-            ("Réunion C"),
-            ("Réunion D"),
-            ("Réunion E"),
-            ("Réunion F"),
-            ("Réunion G"),
-            ("Réunion H"),
-            ("Réunion I"),
-            ("Réunion J"),
-            ("Réunion K"),
-            ("Réunion L"),
-            ("Réunion M"),
-            ("Réunion N"),
-            ("Réunion O"),
-            ("Réunion P")
-
-    );
-
-    public static List<String> getReunionListAlphabetic() {
-        return REUNION_LIST_ALPHABETIC;
-    }
+//    public static List<String> getReunionListAlphabetic() {
+//        return REUNION_LIST_ALPHABETIC;
+//    }
 }
