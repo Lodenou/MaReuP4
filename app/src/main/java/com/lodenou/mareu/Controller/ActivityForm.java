@@ -38,7 +38,7 @@ import java.util.Locale;
 
 public class ActivityForm extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    String[] rooms = {"Bowser", "Daisy", "Donkey", "Luigi", "Mario", "Peach", "Toad", "Tiara", "Wario", "Yoshi"};
+    String[] rooms = {"Bowser", "Daisy", "Donkey", "Luigi", "Mario", "Peach", "Tiara", "Toad", "Wario", "Yoshi"};
     TextView mChooseTime;
 
 
