@@ -25,6 +25,7 @@ import com.lodenou.mareu.Model.Reunion;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -78,6 +79,11 @@ public class InstrumentedTest {
         mActivity = mActivityRule.getActivity();
         assertThat(mActivity, notNullValue());
         Intents.init();
+    }
+
+    @After
+    public void cleanUp(){
+        Intents.release();
     }
 
 
