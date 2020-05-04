@@ -17,6 +17,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/text_field"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_weight="5"

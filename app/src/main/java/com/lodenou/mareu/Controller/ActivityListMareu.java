@@ -1,25 +1,13 @@
 package com.lodenou.mareu.Controller;
 
-import android.content.ClipData;
+
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.sax.StartElementListener;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Surface;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,22 +15,14 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lodenou.mareu.Event.DeleteReunionEvent;
 import com.lodenou.mareu.Model.Reunion;
 import com.lodenou.mareu.R;
 import com.lodenou.mareu.View.ReunionAdapter;
-
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
-
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -223,32 +203,6 @@ public class ActivityListMareu extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
 
     }
-
-//    private void filterPerHour() {
-//        List<Reunion> mListReunion = ApiService.getmReunions();
-//        Comparator<Reunion> compareById = new Comparator<Reunion>() {
-//            @Override
-//            public int compare(Reunion o1, Reunion o2) {
-//                return o1.getTimeReu().compareTo(o2.getTimeReu());
-//            }
-//        };
-//
-//        Collections.sort(mListReunion, compareById);
-//        mAdapter.notifyDataSetChanged();
-//    }
-//
-//    private void filterPerRoom() {
-//        List<Reunion> mListReunion = ApiService.getmReunions();
-//        Comparator<Reunion> compareById = new Comparator<Reunion>() {
-//            @Override
-//            public int compare(Reunion o1, Reunion o2) {
-//                return o1.getRoomReu().compareTo(o2.getRoomReu());
-//            }
-//        };
-//
-//        Collections.sort(mListReunion, compareById);
-//        mAdapter.notifyDataSetChanged();
-//    }
 
 
     private void initList() {

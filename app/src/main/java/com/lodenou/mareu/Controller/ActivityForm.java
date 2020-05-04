@@ -168,27 +168,8 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         final EditText fieldForm2 = findViewById(R.id.fields_2_form);
         final ChipGroup chipGroup = findViewById(R.id.chip_group);
 
-        //TODO
-//        fieldForm2.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
-        // ------------------------------------------------------------------------------------------------------------------------------------
 
         // Validate Button
-        // final EditText mEditTextEmail = findViewById(R.id.fields_2_form);
         final Spinner spin = (Spinner) findViewById(R.id.Spinner);
         Button mValidateButton = findViewById(R.id.validate_button);
         mValidateButton.setOnClickListener(new View.OnClickListener() {
