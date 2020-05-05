@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,14 +16,18 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lodenou.mareu.Event.DeleteReunionEvent;
 import com.lodenou.mareu.Model.Reunion;
 import com.lodenou.mareu.R;
 import com.lodenou.mareu.View.ReunionAdapter;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -108,7 +113,6 @@ public class ActivityListMareu extends AppCompatActivity {
             case R.id.filter_1:
                 filterPerHour("07h");
                 return true;
-
             case R.id.filter_2:
                 filterPerHour("08h");
                 return true;
@@ -188,7 +192,7 @@ public class ActivityListMareu extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void filterPerHour(String hour) {
-//        Reunion mReunion;
+
         List<Reunion> mListReunion = ApiService.getmReunions();
 
         mListReunion.removeIf(mReunion -> (!mReunion.getTimeReu().contains(hour)));
@@ -196,7 +200,7 @@ public class ActivityListMareu extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void filterPerRoom(String room){
+    public void filterPerRoom(String room) {
         List<Reunion> mListReunion = ApiService.getmReunions();
 
         mListReunion.removeIf(mReunion -> (!mReunion.getRoomReu().contains(room)));

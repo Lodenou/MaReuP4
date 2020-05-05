@@ -62,5 +62,10 @@ public class Reunion {
         this.emailReu = emailReu;
     }
 
-
+    public void setEntireReu(String subjectReu, String timeReu, String roomReu, String emailReu){
+        this.subjectReu = subjectReu;
+        this.timeReu = timeReu;
+        this.roomReu = roomReu;
+        this.emailReu = emailReu;
+    }
 }

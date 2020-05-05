@@ -1,10 +1,15 @@
 package com.lodenou.mareu;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.lodenou.mareu.Controller.ApiService;
 import com.lodenou.mareu.Model.Reunion;
+import com.lodenou.mareu.View.ReunionAdapter;
 
 import org.junit.Test;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -18,6 +23,7 @@ public class UnitTests {
 
     private ApiService mService;
     private Reunion mReunion;
+    private ReunionAdapter mAdapter;
 
     @Test
     public void addition_isCorrect() {
@@ -45,8 +51,46 @@ public class UnitTests {
     }
 
 
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Test
-    public void filtersWork(){
+    public void hourFilterWorks() {
+        List<Reunion> mListReunion1 = new ArrayList<>();
+
+
+        Reunion mReunion0;
+        Reunion mReunion1;
+        Reunion mReunion2;
+        mListReunion1.add(mReunion0 = new Reunion("Blablabla", "08h20", "Daisy", "hhhd@gg.dd"));
+        mListReunion1.add(mReunion1 = new Reunion("Blablabla", "09h20", "Daisy", "hhhd@gg.dd"));
+        mListReunion1.add(mReunion2 = new Reunion("Blablabla", "08h20", "Daisy", "hhhd@gg.dd"));
+
+
+        mListReunion1.removeIf(mReunion -> (!mReunion.getTimeReu().contains("08h")));
+
+
+        assertTrue(mListReunion1.contains(mReunion0));
+        assertTrue(mListReunion1.contains(mReunion2));
+        assertFalse(mListReunion1.contains(mReunion1));
+
+    }
+
+    @Test
+    public void roomFilterWorks(){
+        List<Reunion> mListReunion1 = new ArrayList<>();
+        Reunion mReunion0;
+        Reunion mReunion1;
+        Reunion mReunion2;
+        mListReunion1.add(mReunion0 = new Reunion("Blablabla", "08h20", "Bowser", "hhhd@gg.dd"));
+        mListReunion1.add(mReunion1 = new Reunion("Blablabla", "09h20", "Daisy", "hhhd@gg.dd"));
+        mListReunion1.add(mReunion2 = new Reunion("Blablabla", "08h20", "Bowser", "hhhd@gg.dd"));
+
+
+        mListReunion1.removeIf(mReunion -> (!mReunion.getRoomReu().contains("Bowser")));
+
+        assertTrue(mListReunion1.contains(mReunion0));
+        assertTrue(mListReunion1.contains(mReunion2));
+        assertFalse(mListReunion1.contains(mReunion1));
 
     }
 }
