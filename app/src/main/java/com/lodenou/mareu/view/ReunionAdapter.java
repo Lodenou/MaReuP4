@@ -1,4 +1,4 @@
-package com.lodenou.mareu.View;
+package com.lodenou.mareu.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,15 +6,13 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lodenou.mareu.Controller.ActivityZoom;
-import com.lodenou.mareu.Controller.ApiService;
-import com.lodenou.mareu.Event.DeleteReunionEvent;
-import com.lodenou.mareu.Model.Reunion;
+import com.lodenou.mareu.controller.ActivityZoom;
+import com.lodenou.mareu.event.DeleteReunionEvent;
+import com.lodenou.mareu.model.Reunion;
 import com.lodenou.mareu.R;
 
 import org.greenrobot.eventbus.EventBus;
@@ -59,8 +57,6 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
         final Reunion reunion = ListReunion.get(position);
 
         // get the subject of the meeting
-//        holder.mTextViewReu.setText(REUNION_LIST_ALPHABETIC.get(position));
-
         holder.mTextViewReu.setText(reunion.getSubjectReu());
 
         // random color for the alert image

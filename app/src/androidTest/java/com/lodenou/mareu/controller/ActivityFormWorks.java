@@ -1,4 +1,4 @@
-package com.lodenou.mareu.Controller;
+package com.lodenou.mareu.controller;
 
 
 import android.view.View;
@@ -23,21 +23,18 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class ValidateButton {
+public class ActivityFormWorks {
 
     @Rule
     public ActivityTestRule<ActivityListMareu> mActivityTestRule = new ActivityTestRule<>(ActivityListMareu.class);
 
     @Test
-    public void validateButton() {
+    public void activityFormWorks() {
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.fab),
                         childAtPosition(
@@ -47,16 +44,6 @@ public class ValidateButton {
                                 2),
                         isDisplayed()));
         floatingActionButton.perform(click());
-
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.validate_button), withText("Valider"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("androidx.core.widget.NestedScrollView")),
-                                        0),
-                                7),
-                        isDisplayed()));
-        appCompatButton.perform(click());
 
         ViewInteraction scrollView = onView(
                 allOf(childAtPosition(

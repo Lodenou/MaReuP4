@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+
 import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.ViewInteraction;
@@ -13,9 +14,11 @@ import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
-import com.lodenou.mareu.Controller.ActivityForm;
-import com.lodenou.mareu.Controller.ActivityListMareu;
-import com.lodenou.mareu.Controller.ActivityZoom;
+
+import com.lodenou.mareu.controller.ActivityForm;
+import com.lodenou.mareu.controller.ActivityListMareu;
+import com.lodenou.mareu.controller.ActivityZoom;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
@@ -24,6 +27,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -71,7 +75,7 @@ public class InstrumentedTest {
     }
 
     @After
-    public void cleanUp(){
+    public void cleanUp() {
         Intents.release();
     }
 
@@ -102,7 +106,7 @@ public class InstrumentedTest {
     }
 
     @Test
-    public void addEmailButtonWorks(){
+    public void addEmailButtonWorks() {
         onView(withId(R.id.fab)).perform(click());
         onView(withId(R.id.fields_2_form)).perform(replaceText("ffff@ff.fd"));
         onView(withId(R.id.email_button)).perform(click());
@@ -138,14 +142,14 @@ public class InstrumentedTest {
         appCompatCheckedTextView.perform(click());
 
         onView(withId(R.id.fields_2_form)).perform(replaceText("gggggg@ggg.dd"));
-        Thread.sleep(500);
+
         onView(withId(R.id.email_button)).perform(click());
-        Thread.sleep(500);
+
 
         // Swipe to see validate button
         Espresso.onView(ViewMatchers.withId(R.id.nested_scroll_view)).perform(ViewActions.swipeUp());
         onView(withId(R.id.validate_button)).perform(click());
-        Thread.sleep(500);
+
         onView(withId(R.id.unique_item)).perform(click());
 
         // check if we are in the ActivityZoom

@@ -1,9 +1,8 @@
-package com.lodenou.mareu.Controller;
+package com.lodenou.mareu.controller;
 
-import com.lodenou.mareu.Model.Reunion;
+import com.lodenou.mareu.model.Reunion;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ApiService {

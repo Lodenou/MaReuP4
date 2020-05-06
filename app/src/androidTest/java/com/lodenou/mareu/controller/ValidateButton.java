@@ -1,4 +1,4 @@
-package com.lodenou.mareu.Controller;
+package com.lodenou.mareu.controller;
 
 
 import android.view.View;
@@ -15,7 +15,6 @@ import com.lodenou.mareu.R;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,18 +23,21 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class testactivityform {
+public class ValidateButton {
 
     @Rule
     public ActivityTestRule<ActivityListMareu> mActivityTestRule = new ActivityTestRule<>(ActivityListMareu.class);
 
     @Test
-    public void testactivityform() {
+    public void validateButton() {
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.fab),
                         childAtPosition(
@@ -46,15 +48,25 @@ public class testactivityform {
                         isDisplayed()));
         floatingActionButton.perform(click());
 
-        ViewInteraction button = onView(
-                allOf(withId(R.id.validate_button),
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.validate_button), withText("Valider"),
                         childAtPosition(
                                 childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.ScrollView.class),
+                                        withClassName(is("androidx.core.widget.NestedScrollView")),
                                         0),
                                 7),
                         isDisplayed()));
-        button.check(matches(isDisplayed()));
+        appCompatButton.perform(click());
+
+        ViewInteraction scrollView = onView(
+                allOf(childAtPosition(
+                        allOf(withId(android.R.id.content),
+                                childAtPosition(
+                                        withId(R.id.decor_content_parent),
+                                        1)),
+                        0),
+                        isDisplayed()));
+        scrollView.check(matches(isDisplayed()));
     }
 
     private static Matcher<View> childAtPosition(

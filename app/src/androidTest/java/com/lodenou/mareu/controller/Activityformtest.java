@@ -1,4 +1,4 @@
-package com.lodenou.mareu.Controller;
+package com.lodenou.mareu.controller;
 
 
 import android.view.View;

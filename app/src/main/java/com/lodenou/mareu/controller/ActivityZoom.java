@@ -1,4 +1,4 @@
-package com.lodenou.mareu.Controller;
+package com.lodenou.mareu.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,10 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.lodenou.mareu.Model.Reunion;
 import com.lodenou.mareu.R;
-
-import java.util.List;
 
 public class ActivityZoom extends AppCompatActivity {
 

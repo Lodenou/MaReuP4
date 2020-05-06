@@ -1,4 +1,4 @@
-package com.lodenou.mareu.View;
+package com.lodenou.mareu.view;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.view.LayoutInflater;

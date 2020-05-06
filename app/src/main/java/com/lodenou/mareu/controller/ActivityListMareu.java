@@ -1,4 +1,4 @@
-package com.lodenou.mareu.Controller;
+package com.lodenou.mareu.controller;
 
 
 import android.content.Intent;
@@ -18,10 +18,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.lodenou.mareu.Event.DeleteReunionEvent;
-import com.lodenou.mareu.Model.Reunion;
+import com.lodenou.mareu.event.DeleteReunionEvent;
+import com.lodenou.mareu.model.Reunion;
 import com.lodenou.mareu.R;
-import com.lodenou.mareu.View.ReunionAdapter;
+import com.lodenou.mareu.view.ReunionAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -50,30 +50,11 @@ public class ActivityListMareu extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initList();
-
+        initFab();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-
-
-        // change the color of the fab' cross
-        DrawableCompat.setTint(
-                DrawableCompat.wrap(fab.getDrawable()),
-                ContextCompat.getColor(getApplicationContext(), R.color.colorWhite)
-        );
-
-        // on click on fab, creat new ActivityForm and start it
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent activity2Intent = new Intent(getApplicationContext(), ActivityForm.class);
-                startActivity(activity2Intent);
-            }
-        });
 
     }
 
@@ -200,7 +181,7 @@ public class ActivityListMareu extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void filterPerRoom(String room) {
+    private void filterPerRoom(String room) {
         List<Reunion> mListReunion = ApiService.getmReunions();
 
         mListReunion.removeIf(mReunion -> (!mReunion.getRoomReu().contains(room)));
@@ -208,6 +189,26 @@ public class ActivityListMareu extends AppCompatActivity {
 
     }
 
+    private void initFab(){
+        FloatingActionButton fab = findViewById(R.id.fab);
+
+
+        // change the color of the fab' cross
+        DrawableCompat.setTint(
+                DrawableCompat.wrap(fab.getDrawable()),
+                ContextCompat.getColor(getApplicationContext(), R.color.colorWhite)
+        );
+
+        // on click on fab, creat new ActivityForm and start it
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent activity2Intent = new Intent(getApplicationContext(), ActivityForm.class);
+                startActivity(activity2Intent);
+            }
+        });
+    }
 
     private void initList() {
         final List<Reunion> reunions = ApiService.getmReunions();

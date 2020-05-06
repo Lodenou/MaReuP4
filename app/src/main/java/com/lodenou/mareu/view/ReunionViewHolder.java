@@ -1,4 +1,4 @@
-package com.lodenou.mareu.View;
+package com.lodenou.mareu.view;
 
 import android.view.View;
 import android.widget.ImageButton;

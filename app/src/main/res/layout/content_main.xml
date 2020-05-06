@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Controller.ActivityListMareu"
+    tools:context=".controller.ActivityListMareu"
     tools:showIn="@layout/activity_list_mareu">
 
 
@@ -15,7 +15,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Controller.ActivityListMareu"
+        tools:context=".controller.ActivityListMareu"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"></androidx.recyclerview.widget.RecyclerView>
 

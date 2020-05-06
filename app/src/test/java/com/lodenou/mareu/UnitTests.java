@@ -4,11 +4,12 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.lodenou.mareu.Controller.ApiService;
-import com.lodenou.mareu.Model.Reunion;
-import com.lodenou.mareu.View.ReunionAdapter;
+import com.lodenou.mareu.controller.ApiService;
+import com.lodenou.mareu.model.Reunion;
+import com.lodenou.mareu.view.ReunionAdapter;
 
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,14 +43,13 @@ public class UnitTests {
     }
 
     @Test
-    public void deleteMeetingWithSuccess(){
+    public void deleteMeetingWithSuccess() {
         //add a reunion to get 1 element in the list
         mService.getmReunions().add(mReunion);
         Reunion reunionToDelete = mService.getmReunions().get(0);
         mService.deleteReunion(reunionToDelete);
         assertFalse(mService.getmReunions().contains(reunionToDelete));
     }
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -76,7 +76,7 @@ public class UnitTests {
     }
 
     @Test
-    public void roomFilterWorks(){
+    public void roomFilterWorks() {
         List<Reunion> mListReunion1 = new ArrayList<>();
         Reunion mReunion0;
         Reunion mReunion1;

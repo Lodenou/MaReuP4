@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Controller.ActivityZoom"></activity>
-        <activity android:name=".Controller.ActivityForm" />
+        <activity android:name=".controller.ActivityZoom"></activity>
+        <activity android:name=".controller.ActivityForm" />
         <activity
-            android:name=".Controller.ActivityListMareu"
+            android:name=".controller.ActivityListMareu"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

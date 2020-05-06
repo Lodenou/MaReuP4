@@ -1,4 +1,4 @@
-package com.lodenou.mareu.Controller;
+package com.lodenou.mareu.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,11 +7,6 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.InputType;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,8 +21,8 @@ import android.widget.Toast;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.chip.ChipGroup;
-import com.lodenou.mareu.Model.Reunion;
-import com.lodenou.mareu.View.NothingSelectedSpinnerAdapter;
+import com.lodenou.mareu.model.Reunion;
+import com.lodenou.mareu.view.NothingSelectedSpinnerAdapter;
 import com.lodenou.mareu.R;
 
 import java.text.SimpleDateFormat;
@@ -42,7 +37,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     TextView mChooseTime;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +45,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         initiateValidButton();
         initiateTimePicker();
         initiateSpinner();
-
 
 
     }
@@ -181,9 +174,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
                     Toast.makeText(getApplicationContext(),
                             "Remplissez tous les champs",
                             Toast.LENGTH_LONG).show();
-                }
-
-                else {
+                } else {
                     finish();
                     startActivity(getFormInfos());
                 }
@@ -213,12 +204,9 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         String spinnerText = spin.getSelectedItem().toString();
 
 
-
-
-
         Intent intent = new Intent(this, ActivityListMareu.class);
         ApiService.getmReunions().add(new Reunion(SubjectText, myEditedText1, spinnerText, emails.toString()
-                .replace("[" ,"").replace("]", "")));
+                .replace("[", "").replace("]", "")));
 
 
         return intent;

@@ -1,4 +1,4 @@
-package com.lodenou.mareu.Controller;
+package com.lodenou.mareu.controller;
 
 
 import android.view.View;
@@ -15,6 +15,7 @@ import com.lodenou.mareu.R;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,13 +29,13 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class ActivityFormWorks {
+public class testactivityform {
 
     @Rule
     public ActivityTestRule<ActivityListMareu> mActivityTestRule = new ActivityTestRule<>(ActivityListMareu.class);
 
     @Test
-    public void activityFormWorks() {
+    public void testactivityform() {
         ViewInteraction floatingActionButton = onView(
                 allOf(withId(R.id.fab),
                         childAtPosition(
@@ -45,15 +46,15 @@ public class ActivityFormWorks {
                         isDisplayed()));
         floatingActionButton.perform(click());
 
-        ViewInteraction scrollView = onView(
-                allOf(childAtPosition(
-                        allOf(withId(android.R.id.content),
+        ViewInteraction button = onView(
+                allOf(withId(R.id.validate_button),
+                        childAtPosition(
                                 childAtPosition(
-                                        withId(R.id.decor_content_parent),
-                                        1)),
-                        0),
+                                        IsInstanceOf.<View>instanceOf(android.widget.ScrollView.class),
+                                        0),
+                                7),
                         isDisplayed()));
-        scrollView.check(matches(isDisplayed()));
+        button.check(matches(isDisplayed()));
     }
 
     private static Matcher<View> childAtPosition(

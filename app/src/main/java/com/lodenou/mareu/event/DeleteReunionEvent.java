@@ -1,6 +1,6 @@
-package com.lodenou.mareu.Event;
+package com.lodenou.mareu.event;
 
-import com.lodenou.mareu.Model.Reunion;
+import com.lodenou.mareu.model.Reunion;
 
 public class DeleteReunionEvent {
 
