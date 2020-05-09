@@ -3,6 +3,7 @@ package com.lodenou.mareu.controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -21,6 +22,14 @@ public class ActivityZoom extends AppCompatActivity {
 
     }
 
+    // Allow horizontal screen
+    @Override
+    protected void onResume() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        super.onResume();
+    }
+
+    // Get the emails and display it
     private void getEmailText() {
         TextView emailfield = findViewById(R.id.email_zoom);
 
@@ -51,7 +60,6 @@ public class ActivityZoom extends AppCompatActivity {
     private void initiateBackButton() {
         // bouton Back en haut à gauche
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 }

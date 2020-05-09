@@ -4,7 +4,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.lodenou.mareu.controller.ApiService;
+import com.lodenou.mareu.controller.DummyReunionApiService;
 import com.lodenou.mareu.model.Reunion;
 import com.lodenou.mareu.view.ReunionAdapter;
 
@@ -22,15 +22,9 @@ import static org.junit.Assert.*;
  */
 public class UnitTests {
 
-    private ApiService mService;
+    private DummyReunionApiService mService;
     private Reunion mReunion;
     private ReunionAdapter mAdapter;
-
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-    }
-
 
     @Test
     public void addMeetingWithSuccess() {

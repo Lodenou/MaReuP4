@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
 import com.google.android.material.chip.ChipGroup;
+import com.lodenou.mareu.di.DI;
 import com.lodenou.mareu.model.Reunion;
 import com.lodenou.mareu.view.NothingSelectedSpinnerAdapter;
 import com.lodenou.mareu.R;
@@ -49,13 +50,14 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-
+    // Allow horizontal screen for this activity
     @Override
     protected void onResume() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
         super.onResume();
     }
 
+    // back button
     @Override
     public void onBackPressed() {
         // End the current activity when pressing on back button
@@ -69,7 +71,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         return true;
     }
 
-
+    // setting of the entry chip for email field
     public void buttonClick(View view) {
         final EditText fieldForm2 = findViewById(R.id.fields_2_form);
         final ChipGroup chipGroup = findViewById(R.id.chip_group);
@@ -85,13 +87,14 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         chip.setPadding(60, 10, 60, 10);
         chip.setText(fieldForm2.getText().toString());
 
-        // remove chip on click on the -
+        // remove chip on click on the cross
         chip.setOnCloseIconClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 chipGroup.removeView(chip);
             }
         });
+        // error message for email field
         if (!EmailValid(fieldForm2.getText().toString())) {
             Toast.makeText(getApplicationContext(),
                     "Veuillez rentrer un email valide",
@@ -160,10 +163,9 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         final TextView fieldForm1 = findViewById(R.id.fields_1_form);
         final EditText fieldForm2 = findViewById(R.id.fields_2_form);
         final ChipGroup chipGroup = findViewById(R.id.chip_group);
-
+        final Spinner spin = (Spinner) findViewById(R.id.Spinner);
 
         // Validate Button
-        final Spinner spin = (Spinner) findViewById(R.id.Spinner);
         Button mValidateButton = findViewById(R.id.validate_button);
         mValidateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,14 +202,20 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
             String email = ((Chip) chipGroup.getChildAt(i)).getText().toString();
             emails.add(email);
         }
+        // get hour
         String myEditedText1 = mEditTextHour.getText().toString();
+        // get room from spinner
         String spinnerText = spin.getSelectedItem().toString();
 
 
         Intent intent = new Intent(this, ActivityListMareu.class);
-        ApiService.getmReunions().add(new Reunion(SubjectText, myEditedText1, spinnerText, emails.toString()
-                .replace("[", "").replace("]", "")));
 
+
+//        DummyReunionApiService.getmReunions().add(new Reunion(SubjectText, myEditedText1, spinnerText, emails.toString()
+//                .replace("[", "").replace("]", "")));
+
+        DI.getNeighbourApiService().getmReunions().add(new Reunion(SubjectText, myEditedText1, spinnerText, emails.toString()
+                .replace("[", "").replace("]", "")));
 
         return intent;
     }
@@ -219,7 +227,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-    // OVERRIDES FOR SPINNER
+    // OVERRIDES FOR SPINNER USELESS AT THIS POINT
     //When we select item in the spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -238,6 +246,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         return fieldForm1.getText().toString().trim().length() == 0;
     }
 
+    // Chip group is empty
     private boolean isEmpty2(ChipGroup chipGroup) {
         ArrayList<String> emails = new ArrayList<>();
         for (int i = 0; i < chipGroup.getChildCount(); i++) {
@@ -248,7 +257,7 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         return emails.isEmpty();
     }
 
-    //Bidouillage qui marche
+    // Spinner is empty
     private boolean isEmpty3(Spinner spin) {
         int selectedItemOfMySpinner = spin.getSelectedItemPosition();
         Object actualPositionOfMySpinner = spin.getItemAtPosition(selectedItemOfMySpinner);

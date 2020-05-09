@@ -26,7 +26,7 @@ public class ReunionViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.textView_time)  TextView mTextViewTime;
     // Email des participants
     @BindView(R.id.textView_email)  TextView mTextViewEmail;
-    // bouton poubelle
+    // Bouton poubelle
     @BindView(R.id.imageButton_bin)  ImageButton mImageButtonBin;
 
 

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.lodenou.mareu.di.DI;
 import com.lodenou.mareu.event.DeleteReunionEvent;
 import com.lodenou.mareu.model.Reunion;
 import com.lodenou.mareu.R;
@@ -64,6 +65,7 @@ public class ActivityListMareu extends AppCompatActivity {
         EventBus.getDefault().register(this);
     }
 
+    // Allow horizontal screen
     @Override
     protected void onResume() {
 
@@ -85,6 +87,7 @@ public class ActivityListMareu extends AppCompatActivity {
         return true;
     }
 
+    // Selection for the filter menu
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -171,23 +174,34 @@ public class ActivityListMareu extends AppCompatActivity {
         }
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void filterPerHour(String hour) {
 
-        List<Reunion> mListReunion = ApiService.getmReunions();
 
-        mListReunion.removeIf(mReunion -> (!mReunion.getTimeReu().contains(hour)));
+//        List<Reunion> mListReunion = DummyReunionApiService.getmReunions();
+        List<Reunion> mListReunion = DI.getNeighbourApiService().getmReunions();
+
+//       for (int x = 0 ; x <= mListReunion.size() ; x++) {
+//          if (!mListReunion.get(x).getEmailReu().contains(hour)){
+        mRecyclerView.getLayoutManager().removeViewAt(0);
+////        mListReunion.removeIf(mReunion -> (!mReunion.getTimeReu().contains(hour)));
         mAdapter.notifyDataSetChanged();
     }
 
+//}
+
+//    }
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void filterPerRoom(String room) {
-        List<Reunion> mListReunion = ApiService.getmReunions();
+        List<Reunion> mListReunion = DI.getNeighbourApiService().getmReunions();
 
         mListReunion.removeIf(mReunion -> (!mReunion.getRoomReu().contains(room)));
         mAdapter.notifyDataSetChanged();
 
     }
+
 
     private void initFab(){
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -211,9 +225,9 @@ public class ActivityListMareu extends AppCompatActivity {
     }
 
     private void initList() {
-        final List<Reunion> reunions = ApiService.getmReunions();
+        final List<Reunion> reunions = DI.getNeighbourApiService().getmReunions();
 
-        // Create adapter passing the list of users
+        // Create adapter
         this.mAdapter = new ReunionAdapter(reunions);
         // Attach the adapter to the recyclerview to populate items
         this.mRecyclerView.setAdapter(this.mAdapter);
@@ -225,7 +239,7 @@ public class ActivityListMareu extends AppCompatActivity {
 
     @Subscribe
     public void onDeleteReunion(DeleteReunionEvent event) {
-        ApiService.deleteReunion(event.reunion);
+        DI.getNeighbourApiService().deleteReunion(event.reunion);
         initList();
     }
 

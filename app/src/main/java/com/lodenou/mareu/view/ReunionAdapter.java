@@ -28,8 +28,6 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
     // List
     final private List <Reunion> ListReunion;
 
-
-
     // Constructor
     public ReunionAdapter(List<Reunion> listReunion) {
         ListReunion = listReunion;
@@ -42,13 +40,7 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.fragment_mareu, parent, false);
-
-
-
-
         return new ReunionViewHolder(view);
-
-
     }
 
     // Met à jour la View avec une réunion
@@ -75,7 +67,6 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
         });
 
         // zoom for emails on click on item
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
