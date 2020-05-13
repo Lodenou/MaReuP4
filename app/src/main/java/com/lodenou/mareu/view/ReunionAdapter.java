@@ -17,16 +17,30 @@ import com.lodenou.mareu.R;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
-
 
 
 public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
 
 
     // List
-    final private List <Reunion> ListReunion;
+    final private List<Reunion> ListReunion;
+    private Date filterDate;
+    private String filterRoom;
+
+    public void setFiltreDate(Date filtreDate) {
+        this.filterDate = filtreDate;
+    }
+
+    public void setFiltreRoom(String filtreRoom) {
+        this.filterRoom = filtreRoom;
+    }
 
     // Constructor
     public ReunionAdapter(List<Reunion> listReunion) {
@@ -46,7 +60,7 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
     // Met à jour la View avec une réunion
     @Override
     public void onBindViewHolder(@NonNull final ReunionViewHolder holder, int position) {
-        final Reunion reunion = ListReunion.get(position);
+        final Reunion reunion = verifFilter().get(position);
 
         // get the subject of the meeting
         holder.mTextViewReu.setText(reunion.getSubjectReu());
@@ -54,7 +68,10 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
         // random color for the alert image
         holder.mImageViewAlerte.setColorFilter(getRandomColor());
 
-        holder.mTextViewTime.setText(" - "+reunion.getTimeReu()+" - ");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH'h'mm", Locale.FRANCE);
+//        mChooseTime.setText(sdf.format(c.getTime()));
+        holder.mTextViewTime.setText(" - " + sdf.format(reunion.getTimeReu()) + " - ");
+//        holder.mTextViewTime.setText(" - " + reunion.getTimeReu() + " - ");
         holder.mTextViewRoom.setText(reunion.getRoomReu());
         holder.mTextViewEmail.setText(reunion.getEmailReu());
 
@@ -78,18 +95,46 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
     }
 
 
-
     // Retourne le total d'items dans la liste
     @Override
     public int getItemCount() {
-        return this.ListReunion.size();
+        return verifFilter().size();
     }
 
-    public int getRandomColor(){
+    public int getRandomColor() {
         Random rnd = new Random();
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
     }
 
+    private List<Reunion> verifFilter() {
+
+//        mListReunion.removeIf(mReunion -> (!(mReunion.getTimeReu().after(date)&& mReunion.getTimeReu().before(calendar.getTime()))));
+
+        // Si filters = null return the normal list
+        if (filterRoom == null && filterDate == null) {
+            return ListReunion;
+        }
+        List<Reunion> resultat = new ArrayList<>();
+
+        for (Reunion reunion : ListReunion) {
+
+            if (reunion.getRoomReu().equals(filterRoom)) {
+
+                resultat.add(reunion);
+            }
+
+            if (filterDate != null) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(filterDate);
+                calendar.add(Calendar.HOUR, 1);
+                if ((reunion.getTimeReu().after(filterDate) && reunion.getTimeReu().before(calendar.getTime()))) {
+                    resultat.add(reunion);
+                }
+
+            }
+        }
+        return resultat;
+    }
 
 
 }

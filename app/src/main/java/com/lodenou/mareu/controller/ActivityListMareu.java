@@ -1,13 +1,22 @@
 package com.lodenou.mareu.controller;
 
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +36,11 @@ import com.lodenou.mareu.view.ReunionAdapter;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +53,7 @@ public class ActivityListMareu extends AppCompatActivity {
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
+    Date mTheTime = null;
 
     private ReunionAdapter mAdapter;
 
@@ -91,53 +105,17 @@ public class ActivityListMareu extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        MenuItem mChooseTime = findViewById(R.id.action_menu1);
 
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.filter_1:
-                filterPerHour("07h");
+            case R.id.action_menu1:
+                initiateTimePickerMenu();
                 return true;
-            case R.id.filter_2:
-                filterPerHour("08h");
-                return true;
-            case R.id.filter_3:
-                filterPerHour("09h");
-                return true;
-            case R.id.filter_4:
-                filterPerHour("10h");
-                return true;
-            case R.id.filter_5:
-                filterPerHour("11h");
-                return true;
-            case R.id.filter_6:
-                filterPerHour("12h");
-                return true;
-            case R.id.filter_7:
-                filterPerHour("13h");
-                return true;
-            case R.id.filter_8:
-                filterPerHour("14h");
-                return true;
-            case R.id.filter_9:
-                filterPerHour("15h");
-                return true;
-            case R.id.filter_10:
-                filterPerHour("16h");
-                return true;
-            case R.id.filter_11:
-                filterPerHour("17h");
-                return true;
-            case R.id.filter_12:
-                filterPerHour("18h");
-                return true;
-            case R.id.filter_13:
-                filterPerHour("19h");
-                return true;
-            case R.id.filter_14:
-                filterPerHour("20h");
-                return true;
+//                mTheTime = "a";
+//                String subTime = mTheTime.substring(0, 3);
 
-
+//                filterPerHour(subTime);
             case R.id.filter_room_1:
                 filterPerRoom("Bowser");
                 return true;
@@ -175,17 +153,22 @@ public class ActivityListMareu extends AppCompatActivity {
     }
 
 
+
+
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void filterPerHour(String hour) {
+    private void filterPerHour(Date date) {
 
 
-//        List<Reunion> mListReunion = DummyReunionApiService.getmReunions();
+
         List<Reunion> mListReunion = DI.getNeighbourApiService().getmReunions();
 
 //       for (int x = 0 ; x <= mListReunion.size() ; x++) {
 //          if (!mListReunion.get(x).getEmailReu().contains(hour)){
-        mRecyclerView.getLayoutManager().removeViewAt(0);
-////        mListReunion.removeIf(mReunion -> (!mReunion.getTimeReu().contains(hour)));
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.HOUR, 1);
+//        mListReunion.removeIf(mReunion -> (!(mReunion.getTimeReu().after(date)&& mReunion.getTimeReu().before(calendar.getTime()))));
+        mAdapter.setFiltreDate(date);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -195,13 +178,29 @@ public class ActivityListMareu extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void filterPerRoom(String room) {
-        List<Reunion> mListReunion = DI.getNeighbourApiService().getmReunions();
-
-        mListReunion.removeIf(mReunion -> (!mReunion.getRoomReu().contains(room)));
-        mAdapter.notifyDataSetChanged();
+//        List<Reunion> mListReunion = DI.getNeighbourApiService().getmReunions();
+//
+//        mListReunion.removeIf(mReunion -> (!mReunion.getRoomReu().contains(room)));
+//        mAdapter.notifyDataSetChanged();
+//        Toast.makeText(getApplicationContext(),mTheTime,Toast.LENGTH_LONG);
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void initiateTimePickerMenu() {
+    TimePickerDialog timePickerDialog = new TimePickerDialog(ActivityListMareu.this, (timePicker, hourOfDay, minutes) -> {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MINUTE, minutes);
+        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH h mm", Locale.FRANCE);
+//            mTheTime.setText(sdf.format(c.getTime()));
+        mTheTime = c.getTime();
+        filterPerHour(mTheTime);
+//        mTheTime = sdf.format(c.getTime());
+    }, 0, 0, false);
+                timePickerDialog.show();
 
+}
 
     private void initFab(){
         FloatingActionButton fab = findViewById(R.id.fab);

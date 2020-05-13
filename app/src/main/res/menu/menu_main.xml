@@ -15,65 +15,6 @@
                 android:id="@+id/action_menu1"
                 android:orderInCategory="1"
                 android:title="Filtrer par heure ">
-
-                <menu>
-                    <item
-                        android:id="@+id/filter_1"
-                        android:orderInCategory="1"
-                        android:title="Réunions à 07h "></item>
-                    <item
-                        android:id="@+id/filter_2"
-                        android:orderInCategory="2"
-                        android:title="Réunions à 08h "></item>
-                    <item
-                        android:id="@+id/filter_3"
-                        android:orderInCategory="3"
-                        android:title="Réunions à 09h "></item>
-                    <item
-                        android:id="@+id/filter_4"
-                        android:orderInCategory="4"
-                        android:title="Réunions à 10h "></item>
-                    <item
-                        android:id="@+id/filter_5"
-                        android:orderInCategory="5"
-                        android:title="Réunions à 11h "></item>
-                    <item
-                        android:id="@+id/filter_6"
-                        android:orderInCategory="6"
-                        android:title="Réunions à 12h "></item>
-                    <item
-                        android:id="@+id/filter_7"
-                        android:orderInCategory="7"
-                        android:title="Réunions à 13h "></item>
-                    <item
-                        android:id="@+id/filter_8"
-                        android:orderInCategory="8"
-                        android:title="Réunions à 14h "></item>
-                    <item
-                        android:id="@+id/filter_9"
-                        android:orderInCategory="9"
-                        android:title="Réunions à 15h "></item>
-                    <item
-                        android:id="@+id/filter_10"
-                        android:orderInCategory="10"
-                        android:title="Réunions à 16h "></item>
-                    <item
-                        android:id="@+id/filter_11"
-                        android:orderInCategory="11"
-                        android:title="Réunions à 17h "></item>
-                    <item
-                        android:id="@+id/filter_12"
-                        android:orderInCategory="12"
-                        android:title="Réunions à 18h "></item>
-                    <item
-                        android:id="@+id/filter_13"
-                        android:orderInCategory="13"
-                        android:title="Réunions à 19h "></item>
-                    <item
-                        android:id="@+id/filter_14"
-                        android:orderInCategory="14"
-                        android:title="Réunions à 20h "></item>
-                </menu>
             </item>
 
             <item

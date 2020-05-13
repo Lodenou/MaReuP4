@@ -26,9 +26,11 @@ import com.lodenou.mareu.model.Reunion;
 import com.lodenou.mareu.view.NothingSelectedSpinnerAdapter;
 import com.lodenou.mareu.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 
@@ -203,16 +205,16 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
             emails.add(email);
         }
         // get hour
-        String myEditedText1 = mEditTextHour.getText().toString();
+
+
         // get room from spinner
         String spinnerText = spin.getSelectedItem().toString();
-
-
+        String[] hs = mEditTextHour.getText().toString().split("h");
+        Calendar instance = Calendar.getInstance();
+        instance.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hs[0]));
+        instance.set(Calendar.MINUTE, Integer.parseInt(hs[1]));
+        Date myEditedText1 = instance.getTime();
         Intent intent = new Intent(this, ActivityListMareu.class);
-
-
-//        DummyReunionApiService.getmReunions().add(new Reunion(SubjectText, myEditedText1, spinnerText, emails.toString()
-//                .replace("[", "").replace("]", "")));
 
         DI.getNeighbourApiService().getmReunions().add(new Reunion(SubjectText, myEditedText1, spinnerText, emails.toString()
                 .replace("[", "").replace("]", "")));
