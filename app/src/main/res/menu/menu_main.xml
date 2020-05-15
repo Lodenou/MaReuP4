@@ -12,6 +12,12 @@
         <menu>
 
             <item
+                android:id="@+id/refresh_button"
+                android:title="Refresh">
+
+            </item>
+
+            <item
                 android:id="@+id/action_menu1"
                 android:orderInCategory="1"
                 android:title="Filtrer par heure ">
