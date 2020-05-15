@@ -34,12 +34,12 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
     private Date filterDate;
     private String filterRoom;
 
-    public void setFiltreDate(Date filtreDate) {
-        this.filterDate = filtreDate;
+    public void setFilterDate(Date filterDate) {
+        this.filterDate = filterDate;
     }
 
-    public void setFiltreRoom(String filtreRoom) {
-        this.filterRoom = filtreRoom;
+    public void setFilterRoom(String filterRoom) {
+        this.filterRoom = filterRoom;
     }
 
     // Constructor
@@ -69,9 +69,8 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
         holder.mImageViewAlerte.setColorFilter(getRandomColor());
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH'h'mm", Locale.FRANCE);
-//        mChooseTime.setText(sdf.format(c.getTime()));
         holder.mTextViewTime.setText(" - " + sdf.format(reunion.getTimeReu()) + " - ");
-//        holder.mTextViewTime.setText(" - " + reunion.getTimeReu() + " - ");
+
         holder.mTextViewRoom.setText(reunion.getRoomReu());
         holder.mTextViewEmail.setText(reunion.getEmailReu());
 

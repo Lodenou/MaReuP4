@@ -1,22 +1,15 @@
 package com.lodenou.mareu.controller;
 
 
-import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.ClipData;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.DatePicker;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -93,6 +86,14 @@ public class ActivityListMareu extends AppCompatActivity {
         EventBus.getDefault().unregister(this);
     }
 
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        Intent i = new Intent(ActivityListMareu.this, ActivityListMareu.class);  //your class
+        startActivity(i);
+        finish();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,6 +110,9 @@ public class ActivityListMareu extends AppCompatActivity {
 
         // Handle item selection
         switch (item.getItemId()) {
+            case R.id.refresh_button:
+                onRestart();
+                return true;
             case R.id.action_menu1:
                 initiateTimePickerMenu();
                 return true;
@@ -156,11 +160,11 @@ public class ActivityListMareu extends AppCompatActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void filterPerHour(Date date) {
+    public void filterPerHour(Date date) {
 
 
 
-        List<Reunion> mListReunion = DI.getNeighbourApiService().getmReunions();
+//        List<Reunion> mListReunion = DI.getNeighbourApiService().getmReunions();
 
 //       for (int x = 0 ; x <= mListReunion.size() ; x++) {
 //          if (!mListReunion.get(x).getEmailReu().contains(hour)){
@@ -168,7 +172,7 @@ public class ActivityListMareu extends AppCompatActivity {
         calendar.setTime(date);
         calendar.add(Calendar.HOUR, 1);
 //        mListReunion.removeIf(mReunion -> (!(mReunion.getTimeReu().after(date)&& mReunion.getTimeReu().before(calendar.getTime()))));
-        mAdapter.setFiltreDate(date);
+        mAdapter.setFilterDate(date);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -178,6 +182,8 @@ public class ActivityListMareu extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void filterPerRoom(String room) {
+        mAdapter.setFilterRoom(room);
+        mAdapter.notifyDataSetChanged();
 //        List<Reunion> mListReunion = DI.getNeighbourApiService().getmReunions();
 //
 //        mListReunion.removeIf(mReunion -> (!mReunion.getRoomReu().contains(room)));
