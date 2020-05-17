@@ -129,7 +129,7 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(filterDate);
                 calendar.add(Calendar.HOUR, 1);
-                if ((reunion.getTimeReu().after(filterDate) && reunion.getTimeReu().before(calendar.getTime()))) {
+                if (((reunion.getTimeReu().equals(filterDate) || reunion.getTimeReu().after(filterDate)) && reunion.getTimeReu().before(calendar.getTime()))) {
                     resultat.add(reunion);
                 }
 
