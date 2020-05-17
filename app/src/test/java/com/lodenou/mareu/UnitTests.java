@@ -2,7 +2,9 @@ package com.lodenou.mareu;
 
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.annotation.VisibleForTesting;
 
 import com.lodenou.mareu.controller.ActivityListMareu;
 import com.lodenou.mareu.controller.DummyReunionApiService;
@@ -59,6 +61,7 @@ public class UnitTests {
 
 
     @Test
+    //FIXME Probablement impossible à tester
     public void hourFilterWorks() {
         List<Reunion> mListReunion1 = new ArrayList<>();
 //        List<Reunion> mListReunion1 = DI.getNeighbourApiService().getmReunions();
@@ -87,7 +90,7 @@ public class UnitTests {
 
 
         // test
-            mListReunion1.remove(mReunion2);
+//            mListReunion1.remove(mReunion2);
 
 //            activityListMareu.filterPerHour(date0);
         mAdapter.setFilterDate(date0);
@@ -98,8 +101,10 @@ public class UnitTests {
     }
 
     @Test
+    //FIXME Probablement impossible à tester
     public void roomFilterWorks() {
         List<Reunion> mListReunion1 = new ArrayList<>();
+        String filterRoom1;
         Reunion mReunion0;
         Reunion mReunion1;
         Reunion mReunion2;
@@ -112,17 +117,21 @@ public class UnitTests {
         Calendar calendar2 = Calendar.getInstance();
         calendar2.set(2020, 5, 13, 11, 59, 59);
         Date date2 = calendar2.getTime();
-//        mListReunion1.add(mReunion0 = new Reunion("Blablabla", date0, "Bowser", "hhhd@gg.dd"));
-//        mListReunion1.add(mReunion1 = new Reunion("Blablabla", date1, "Daisy", "hhhd@gg.dd"));
-//        mListReunion1.add(mReunion2 = new Reunion("Blablabla", date2, "Bowser", "hhhd@gg.dd"));
+        mListReunion1.add(mReunion0 = new Reunion("Blablabla", date0, "Bowser", "hhhd@gg.dd"));
+        mListReunion1.add(mReunion1 = new Reunion("Blablabla", date1, "Daisy", "hhhd@gg.dd"));
+        mListReunion1.add(mReunion2 = new Reunion("Blablabla", date2, "Bowser", "hhhd@gg.dd"));
+
+//        mAdapter.equals(mReunion0);
+        mAdapter.filterRoom = "Bowser";
+        mAdapter.setFilterRoom(mAdapter.filterRoom);
+        mAdapter.verifFilter();
 //        mListReunion1.removeIf(mReunion -> (!mReunion.getRoomReu().contains("Bowser")));
-        mReunion0 = mAdapter.verifFilter().set(0, new Reunion("Blablabla", date0, "Bowser", "hhhd@gg.dd"));
-        mReunion1 = mAdapter.verifFilter().set(1, new Reunion("Blablabla", date1, "Daisy", "hhhd@gg.dd"));
-        mReunion2 = mAdapter.verifFilter().set(2, new Reunion("Blablabla", date2, "Bowser", "hhhd@gg.dd"));
-        mListReunion1.add(mReunion0);
-        mListReunion1.add(mReunion1);
-        mListReunion1.add(mReunion2);
-        mAdapter.setFilterRoom("Bowser");
+//        mReunion0 = mAdapter.verifFilter().set(0, new Reunion("Blablabla", date0, "Bowser", "hhhd@gg.dd"));
+//        mReunion1 = mAdapter.verifFilter().set(1, new Reunion("Blablabla", date1, "Daisy", "hhhd@gg.dd"));
+//        mReunion2 = mAdapter.verifFilter().set(2, new Reunion("Blablabla", date2, "Bowser", "hhhd@gg.dd"));
+//        mListReunion1.add(mReunion0);
+//        mListReunion1.add(mReunion1);
+//        mListReunion1.add(mReunion2);
         assertTrue(mListReunion1.contains(mReunion0));
         assertTrue(mListReunion1.contains(mReunion2));
         assertFalse(mListReunion1.contains(mReunion1));

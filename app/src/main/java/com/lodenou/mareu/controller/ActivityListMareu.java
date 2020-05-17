@@ -161,13 +161,6 @@ public class ActivityListMareu extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void filterPerHour(Date date) {
-
-
-
-//        List<Reunion> mListReunion = DI.getNeighbourApiService().getmReunions();
-
-//       for (int x = 0 ; x <= mListReunion.size() ; x++) {
-//          if (!mListReunion.get(x).getEmailReu().contains(hour)){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.HOUR, 1);
@@ -184,11 +177,8 @@ public class ActivityListMareu extends AppCompatActivity {
     private void filterPerRoom(String room) {
         mAdapter.setFilterRoom(room);
         mAdapter.notifyDataSetChanged();
-//        List<Reunion> mListReunion = DI.getNeighbourApiService().getmReunions();
-//
-//        mListReunion.removeIf(mReunion -> (!mReunion.getRoomReu().contains(room)));
-//        mAdapter.notifyDataSetChanged();
-//        Toast.makeText(getApplicationContext(),mTheTime,Toast.LENGTH_LONG);
+        //mListReunion.removeIf(mReunion -> (!mReunion.getRoomReu().contains(room)));
+
 
     }
     @RequiresApi(api = Build.VERSION_CODES.N)

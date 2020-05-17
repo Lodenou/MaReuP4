@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lodenou.mareu.controller.ActivityZoom;
@@ -32,7 +33,8 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
     // List
     final private List<Reunion> ListReunion;
     private Date filterDate;
-    private String filterRoom;
+    public String filterRoom;
+
 
     public void setFilterDate(Date filterDate) {
         this.filterDate = filterDate;
@@ -105,7 +107,8 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
     }
 
-    private List<Reunion> verifFilter() {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    public List<Reunion> verifFilter() {
 
 //        mListReunion.removeIf(mReunion -> (!(mReunion.getTimeReu().after(date)&& mReunion.getTimeReu().before(calendar.getTime()))));
 

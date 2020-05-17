@@ -265,8 +265,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         Object actualPositionOfMySpinner = spin.getItemAtPosition(selectedItemOfMySpinner);
         return actualPositionOfMySpinner == null;
     }
-
-
 }
 
 
