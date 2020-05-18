@@ -103,4 +103,12 @@ public class UnitTests {
         assertFalse(reunions.contains(r3));
 
     }
+    @Test
+    public void testGetmReunions() {
+        DI.getNewInstanceApiService().getmReunions().clear();
+        assertFalse(DI.getNeighbourApiService().getmReunions().contains(mReunion));
+        DI.getNeighbourApiService().getmReunions().add(mReunion);
+        assertTrue(DI.getNeighbourApiService().getmReunions().contains(mReunion));
+
+    }
 }
