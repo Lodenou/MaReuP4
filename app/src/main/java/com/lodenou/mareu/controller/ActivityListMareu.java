@@ -62,8 +62,6 @@ public class ActivityListMareu extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
     }
 
     @Override
@@ -89,11 +87,10 @@ public class ActivityListMareu extends AppCompatActivity {
     @Override
     public void onRestart() {
         super.onRestart();
-        Intent i = new Intent(ActivityListMareu.this, ActivityListMareu.class);  //your class
+        Intent i = new Intent(ActivityListMareu.this, ActivityListMareu.class);
         startActivity(i);
         finish();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -113,13 +110,11 @@ public class ActivityListMareu extends AppCompatActivity {
             case R.id.refresh_button:
                 onRestart();
                 return true;
+
             case R.id.action_menu1:
                 initiateTimePickerMenu();
                 return true;
-//                mTheTime = "a";
-//                String subTime = mTheTime.substring(0, 3);
 
-//                filterPerHour(subTime);
             case R.id.filter_room_1:
                 filterPerRoom("Bowser");
                 return true;
@@ -156,31 +151,21 @@ public class ActivityListMareu extends AppCompatActivity {
         }
     }
 
-
-
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void filterPerHour(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.HOUR, 1);
-//        mListReunion.removeIf(mReunion -> (!(mReunion.getTimeReu().after(date)&& mReunion.getTimeReu().before(calendar.getTime()))));
         mAdapter.setFilterDate(date);
         mAdapter.notifyDataSetChanged();
     }
-
-//}
-
-//    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void filterPerRoom(String room) {
         mAdapter.setFilterRoom(room);
         mAdapter.notifyDataSetChanged();
-        //mListReunion.removeIf(mReunion -> (!mReunion.getRoomReu().contains(room)));
-
-
     }
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initiateTimePickerMenu() {
     TimePickerDialog timePickerDialog = new TimePickerDialog(ActivityListMareu.this, (timePicker, hourOfDay, minutes) -> {
@@ -189,26 +174,20 @@ public class ActivityListMareu extends AppCompatActivity {
         c.set(Calendar.MINUTE, minutes);
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
         SimpleDateFormat sdf = new SimpleDateFormat("HH h mm", Locale.FRANCE);
-//            mTheTime.setText(sdf.format(c.getTime()));
         mTheTime = c.getTime();
         filterPerHour(mTheTime);
-//        mTheTime = sdf.format(c.getTime());
     }, 0, 0, false);
                 timePickerDialog.show();
-
-}
+    }
 
     private void initFab(){
         FloatingActionButton fab = findViewById(R.id.fab);
-
-
         // change the color of the fab' cross
         DrawableCompat.setTint(
                 DrawableCompat.wrap(fab.getDrawable()),
                 ContextCompat.getColor(getApplicationContext(), R.color.colorWhite)
         );
-
-        // on click on fab, creat new ActivityForm and start it
+        // on click on fab, create new ActivityForm and start it
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -228,8 +207,6 @@ public class ActivityListMareu extends AppCompatActivity {
         this.mRecyclerView.setAdapter(this.mAdapter);
         //Set layout manager to position the items
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
     }
 
     @Subscribe

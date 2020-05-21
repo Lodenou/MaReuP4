@@ -26,11 +26,8 @@ public class UnitTests {
     @Test
     public void addMeetingWithSuccess() {
         int x = 0;
-//        List<Reunion> reunionList = mService.getmReunions();
         List<Reunion> reunionList = DI.getNewInstanceApiService().getmReunions();
         x = reunionList.size();
-        // => ActivityForm l 182  copy of this function to test it
-//        mService.getmReunions().add(mReunion);
         DI.getNeighbourApiService().getmReunions().add(mReunion);
         assertTrue(reunionList.size() == x + 1);
     }
@@ -74,7 +71,6 @@ public class UnitTests {
     }
 
     @Test
-    //FIXME Probablement impossible à tester
     public void roomFilterWorks() {
         List<Reunion> mListReunion1 = new ArrayList<>();
         Calendar calendar0 = Calendar.getInstance();

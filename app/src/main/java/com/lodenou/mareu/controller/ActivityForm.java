@@ -39,7 +39,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     String[] rooms = {"Bowser", "Daisy", "Donkey", "Luigi", "Mario", "Peach", "Tiara", "Toad", "Wario", "Yoshi"};
     TextView mChooseTime;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +47,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         initiateValidButton();
         initiateTimePicker();
         initiateSpinner();
-
-
     }
 
     // Allow horizontal screen for this activity
@@ -109,11 +106,9 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-
     private void initiateBackButton() {
         // bouton Back en haut à gauche
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
@@ -146,7 +141,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         final Spinner spin = (Spinner) findViewById(R.id.Spinner);
         spin.setOnItemSelectedListener(this);
 
-
         //Creating the ArrayAdapter instance having the rooms' list
         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, rooms);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -154,12 +148,9 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         spin.setAdapter(new NothingSelectedSpinnerAdapter(
                 aa,
                 R.layout.contact_spinner_row_nothing_selected,
-
                 this));
-
         spin.setPrompt("Selectionnez une salle");
     }
-
 
     private void initiateValidButton() {
         final TextView fieldForm1 = findViewById(R.id.fields_1_form);
@@ -186,7 +177,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
         });
     }
 
-
     // Send form infos to ActivityListMareu
     public Intent getFormInfos() {
 
@@ -204,11 +194,11 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
             String email = ((Chip) chipGroup.getChildAt(i)).getText().toString();
             emails.add(email);
         }
-        // get hour
-
 
         // get room from spinner
         String spinnerText = spin.getSelectedItem().toString();
+
+        // get hour
         String[] hs = mEditTextHour.getText().toString().split("h");
         Calendar instance = Calendar.getInstance();
         instance.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hs[0]));
@@ -241,7 +231,6 @@ public class ActivityForm extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
 
     // fields empty methods
     private boolean isEmpty1(TextView fieldForm1) {

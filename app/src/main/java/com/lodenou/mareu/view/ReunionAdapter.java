@@ -95,23 +95,19 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
         });
     }
 
-
     // Retourne le total d'items dans la liste
     @Override
     public int getItemCount() {
         return verifFilter().size();
     }
 
-    public int getRandomColor() {
+    private int getRandomColor() {
         Random rnd = new Random();
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
     }
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     public List<Reunion> verifFilter() {
-
-//        mListReunion.removeIf(mReunion -> (!(mReunion.getTimeReu().after(date)&& mReunion.getTimeReu().before(calendar.getTime()))));
-
         // Si filters = null return the normal list
         if (filterRoom == null && filterDate == null) {
             return ListReunion;
@@ -132,11 +128,8 @@ public class ReunionAdapter extends RecyclerView.Adapter<ReunionViewHolder> {
                 if (((reunion.getTimeReu().equals(filterDate) || reunion.getTimeReu().after(filterDate)) && reunion.getTimeReu().before(calendar.getTime()))) {
                     resultat.add(reunion);
                 }
-
             }
         }
         return resultat;
     }
-
-
 }
